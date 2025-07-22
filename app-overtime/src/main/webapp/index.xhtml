@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>OverTime - Bienvenida</title>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <style>
+        body {
+            background-color: #F0F4F8;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .logo {
+            max-height: 80px;
+            margin-bottom: 1.5rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FF6B00;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature i {
+            font-size: 1.5rem;
+            color: #FF6B00;
+            margin-right: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .btn-login {
+            background-color: #FF6B00;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: #E55D00;
+        }
+
+        .btn-login i {
+            margin-left: 0.5rem;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h:form>
+        <div class="card">
+            <h:graphicImage url="images/logo_overtime.jpg"  alt="Logo OverTime" class="logo" />
+
+            <div class="title">Bienvenido a <span style="color:#FF6B00;">OverTime</span></div>
+            <div class="subtitle">Tu plataforma para la gestión de eventos deportivos.</div>
+
+            <div class="features">
+                <div class="feature">
+                    <i class="pi pi-calendar"></i> Visualiza los eventos deportivos disponibles.
+                </div>
+                <div class="feature">
+                    <i class="pi pi-chart-line"></i> Consulta estadísticas y tablas de posiciones.
+                </div>
+                <div class="feature">
+                    <i class="pi pi-users"></i> Fomentamos el deporte y la competencia sana.
+                </div>
+            </div>
+
+            <p:commandButton value="Login" icon="pi pi-arrow-right"
+                             action="login.xhtml?faces-redirect=true"
+                             styleClass="btn-login" />
+        </div>
+    </h:form>
+</h:body>
+</html>

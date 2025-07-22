@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Iniciar Sesión - OverTime</title>
+    <style>
+        body {
+            background-color: #0A0A23; /* azul oscuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-card {
+            background-color: #FFFFFF;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            text-align: center;
+            color: #FF6B00; /* naranja */
+            margin-bottom: 1.5rem;
+        }
+
+        .login-button {
+            background-color: #FF6B00;
+            border: none;
+        }
+
+        .login-button:hover {
+            background-color: #E55D00;
+        }
+
+        .register-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #0A0A23;
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h:form>
+        <div class="login-card">
+            <h2 class="login-header">OverTime</h2>
+
+            <p:messages showDetail="true" closable="true" />
+
+            <p:inputText id="usuario" value="#{usuarioBean.usuario}" required="true"
+                         label="Usuario" placeholder="Usuario" styleClass="w-full mb-3" />
+
+            <p:password id="contrasenna" value="#{usuarioBean.contrasenna}" required="true"
+                        label="Contraseña" feedback="false" placeholder="Contraseña" styleClass="w-full mb-3" />
+
+            <p:commandButton value="Iniciar sesión" action="#{usuarioBean.login}"
+                             update="@form" styleClass="w-full login-button" />
+
+            <h:link outcome="registro.xhtml" class="register-link">¿No tienes cuenta? Regístrate</h:link>
+        </div>
+    </h:form>
+</h:body>
+</html>
