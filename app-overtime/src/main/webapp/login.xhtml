@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Iniciar Sesión - OverTime</title>
     <style>
         body {
-            background-color: #0A0A23; /* azul oscuro */
+            background-color: #0A0A23;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,13 +26,19 @@
 
         .login-header {
             text-align: center;
-            color: #FF6B00; /* naranja */
+            color: #FF6B00;
             margin-bottom: 1.5rem;
         }
 
         .login-button {
             background-color: #FF6B00;
             border: none;
+            color: white;
+            width: 100%;
+            font-weight: bold;
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
         }
 
         .login-button:hover {
@@ -67,7 +72,7 @@
                         label="Contraseña" feedback="false" placeholder="Contraseña" styleClass="w-full mb-3" />
 
             <p:commandButton value="Iniciar sesión" action="#{usuarioBean.login}"
-                             update="@form" styleClass="w-full login-button" />
+                             update="@form" styleClass="login-button" />
 
             <h:link outcome="registro.xhtml" class="register-link">¿No tienes cuenta? Regístrate</h:link>
         </div>

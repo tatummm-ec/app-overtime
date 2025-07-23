@@ -34,6 +34,10 @@
             background-color: #FF6B00;
             border: none;
             color: white;
+            font-weight: bold;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
         }
 
         .back-button:hover {
@@ -50,7 +54,7 @@
             <p:dataTable value="#{tablaPosicionesBean.posiciones}" var="pos" responsiveLayout="scroll">
 
                 <p:column headerText="Equipo">
-                    <h:outputText value="#{pos.nombreEquipo}" />
+                    <h:outputText value="#{pos.nombre}" />
                 </p:column>
 
                 <p:column headerText="PJ">
@@ -78,7 +82,7 @@
                 </p:column>
 
                 <p:column headerText="DG">
-                    <h:outputText value="#{pos.diferenciaGoles}" />
+                    <h:outputText value="#{pos.golDiferencia}" />
                 </p:column>
 
                 <p:column headerText="Pts">
