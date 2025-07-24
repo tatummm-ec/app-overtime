@@ -8,7 +8,16 @@
     <persistence-unit name="tuappPU" transaction-type="JTA">
         <jta-data-source>jdbc/tuappDS</jta-data-source>
         <properties>
-            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://overtime-mysql-container:3306/overtime?useSSL=false&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.user" value="overtimeuser"/>
+            <property name="jakarta.persistence.jdbc.password" value="overtimeUser2525"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!-- log para depuración -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
         </properties>
     </persistence-unit>
 
