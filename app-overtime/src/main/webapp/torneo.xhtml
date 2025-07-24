@@ -11,6 +11,7 @@
 
     <ui:define name="content">
         <h:form>
+
             <h2 style="text-align:center; color:#003366; font-weight:bold; margin-bottom:2rem;">
                 #{torneoBean.torneoSeleccionado.nombre} - Próximos Partidos
             </h2>
@@ -18,12 +19,12 @@
             <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom:2rem;">
                 <p:commandButton value="Ver Estadísticas"
                                  icon="pi pi-chart-line"
-                                 action="estadisticas.xhtml?faces-redirect=true"
+                                 action="tabla.xhtml?faces-redirect=true"
                                  style="background-color:#007bff; color:white; font-weight:bold;"/>
 
                 <p:commandButton value="Registrar Partido"
                                  icon="pi pi-plus-circle"
-                                 action="nuevo_partido.xhtml?faces-redirect=true"
+                                 action="new_partido.xhtml?faces-redirect=true"
                                  style="background-color:#28a745; color:white; font-weight:bold;"/>
             </div>
 
@@ -33,7 +34,6 @@
 
             <p:dataTable value="#{torneoBean.proximosPartidos}" var="partido"
                          stripedRows="true" responsiveLayout="scroll"
-
                          emptyMessage="No hay partidos programados aún."
                          styleClass="ui-datatable-hoverable"
                          style="margin:auto; max-width:900px;">
@@ -63,12 +63,14 @@
                 </p:column>
             </p:dataTable>
 
+            <!-- Botón Salir (en reemplazo del enlace anterior) -->
             <div style="text-align:center; margin-top:2rem;">
-                <h:outputLink value="tournament_management.xhtml"
-                              style="color:#003366; font-weight:bold;">
-                    Volver a la Gestión de Torneos
-                </h:outputLink>
+                <p:commandButton value="Salir"
+                                 icon="pi pi-sign-out"
+                                 action="home.xhtml?faces-redirect=true"
+                                 style="background-color:#dc3545; color:white; font-weight:bold;"/>
             </div>
+
         </h:form>
     </ui:define>
 </ui:composition>

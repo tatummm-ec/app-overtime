@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
+
 <h:head>
     <title>Iniciar Sesión - OverTime</title>
     <style>
@@ -19,41 +20,52 @@
             background-color: #FFFFFF;
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
             width: 100%;
             max-width: 400px;
+            box-sizing: border-box;
         }
 
         .login-header {
             text-align: center;
             color: #FF6B00;
+            font-size: 1.8rem;
+            font-weight: bold;
             margin-bottom: 1.5rem;
         }
 
         .login-button {
             background-color: #FF6B00;
             border: none;
-            color: white;
+            color: #FFFFFF;
             width: 100%;
             font-weight: bold;
-            padding: 0.8rem;
-            border-radius: 10px;
+            padding: 0.9rem;
+            border-radius: 12px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
         }
 
         .login-button:hover {
-            background-color: #E55D00;
+            background-color: #e55d00;
         }
 
         .register-link {
             display: block;
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             color: #0A0A23;
+            font-size: 0.95rem;
         }
 
         .register-link:hover {
             text-decoration: underline;
+        }
+
+        .input-field {
+            width: 100%;
+            margin-bottom: 1.5rem;
         }
     </style>
 </h:head>
@@ -65,16 +77,31 @@
 
             <p:messages showDetail="true" closable="true" />
 
-            <p:inputText id="usuario" value="#{usuarioBean.usuario}" required="true"
-                         label="Usuario" placeholder="Usuario" styleClass="w-full mb-3" />
+            <p:inputText
+                    id="usuario"
+                    value="#{usuarioBean.usuario}"
+                    required="true"
+                    label="Usuario"
+                    placeholder="Usuario"
+                    styleClass="input-field" />
 
-            <p:password id="contrasenna" value="#{usuarioBean.contrasenna}" required="true"
-                        label="Contraseña" feedback="false" placeholder="Contraseña" styleClass="w-full mb-3" />
+            <p:password
+                    id="contrasenna"
+                    value="#{usuarioBean.contrasenna}"
+                    required="true"
+                    label="Contraseña"
+                    placeholder="Contraseña"
+                    feedback="false"
+                    styleClass="input-field" />
 
-            <p:commandButton value="Iniciar sesión" action="#{usuarioBean.login}"
-                             update="@form" styleClass="login-button" />
+            <p:commandButton value="Iniciar sesión"
+                             action="#{usuarioBean.login}"
+                             ajax="false"
+                             style="width:100%; background-color:#ff6600; color:white; font-weight:bold;" />
 
-            <h:link outcome="registro.xhtml" class="register-link">¿No tienes cuenta? Regístrate</h:link>
+            <h:link outcome="registro.xhtml" styleClass="register-link">
+                ¿No tienes cuenta? Regístrate
+            </h:link>
         </div>
     </h:form>
 </h:body>
