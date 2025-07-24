@@ -1,101 +1,95 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <title>Registrar Partido</title>
-    <style>
-        body {
-            background-color: #f5f7fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-        }
+<ui:composition template="/WEB-INF/templates/base.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="http://primefaces.org/ui">
 
-        .form-card {
-            background-color: #ffffff;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 600px;
-        }
+    <ui:define name="title-view">
+        Registrar Partido
+    </ui:define>
 
-        .form-title {
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #FF6B00;
-        }
+    <ui:define name="content">
+        <style>
+            .form-card {
+                background-color: #ffffff;
+                padding: 2.5rem;
+                border-radius: 20px;
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                width: 100%;
+                max-width: 600px;
+                margin: auto;
+            }
 
-        .form-field {
-            margin-bottom: 1.5rem;
-        }
+            .form-title {
+                font-size: 1.8rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                color: #FF6B00;
+            }
 
-        .save-button {
-            background-color: #FF6B00;
-            border: none;
-            width: 100%;
-            color: white;
-            font-weight: bold;
-            padding: 0.8rem;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+            .form-field {
+                margin-bottom: 1.5rem;
+            }
 
-        .save-button:hover {
-            background-color: #E55D00;
-        }
-    </style>
-</h:head>
+            .save-button {
+                background-color: #FF6B00;
+                border: none;
+                width: 100%;
+                color: white;
+                font-weight: bold;
+                padding: 0.8rem;
+                border-radius: 8px;
+                cursor: pointer;
+            }
 
-<h:body>
-    <h:form>
-        <div class="form-card">
-            <h2 class="form-title">Registrar nuevo partido</h2>
+            .save-button:hover {
+                background-color: #E55D00;
+            }
+        </style>
 
-            <p:messages closable="true" showDetail="true" />
+        <h:form>
+            <div class="form-card">
+                <h2 class="form-title">Registrar nuevo partido</h2>
 
-            <div class="form-field">
-                <p:outputLabel for="local" value="Equipo Local" />
-                <p:selectOneMenu id="local" value="#{partidoBean.equipoLocal}" styleClass="w-full">
-                    <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
-                    <f:selectItems value="#{partidoBean.equipos}" var="equipo"
-                                   itemValue="#{equipo.nombre}" itemLabel="#{equipo.nombre}" />
-                </p:selectOneMenu>
+                <p:messages closable="true" showDetail="true" />
+
+                <div class="form-field">
+                    <p:outputLabel for="local" value="Equipo Local" />
+                    <p:selectOneMenu id="local" value="#{partidoBean.equipoLocal}" styleClass="w-full">
+                        <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                        <f:selectItems value="#{partidoBean.equipos}" var="equipo"
+                                       itemValue="#{equipo.nombre}" itemLabel="#{equipo.nombre}" />
+                    </p:selectOneMenu>
+                </div>
+
+                <div class="form-field">
+                    <p:outputLabel for="visitante" value="Equipo Visitante" />
+                    <p:selectOneMenu id="visitante" value="#{partidoBean.equipoVisitante}" styleClass="w-full">
+                        <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                        <f:selectItems value="#{partidoBean.equipos}" var="equipo"
+                                       itemValue="#{equipo.nombre}" itemLabel="#{equipo.nombre}" />
+                    </p:selectOneMenu>
+                </div>
+
+                <div class="form-field">
+                    <p:outputLabel for="fecha" value="Fecha del partido" />
+                    <p:datePicker id="fecha" value="#{partidoBean.fecha}" pattern="yyyy-MM-dd" styleClass="w-full" />
+                </div>
+
+                <div class="form-field">
+                    <p:outputLabel for="hora" value="Hora del partido" />
+                    <p:inputText id="hora" value="#{partidoBean.hora}" placeholder="HH:mm" styleClass="w-full" />
+                </div>
+
+                <div class="form-field">
+                    <p:outputLabel for="lugar" value="Lugar del partido" />
+                    <p:inputText id="lugar" value="#{partidoBean.lugar}" styleClass="w-full" />
+                </div>
+
+                <p:commandButton value="Guardar partido" action="#{partidoBean.guardarPartido}"
+                                 update="@form" styleClass="save-button" />
             </div>
-
-            <div class="form-field">
-                <p:outputLabel for="visitante" value="Equipo Visitante" />
-                <p:selectOneMenu id="visitante" value="#{partidoBean.equipoVisitante}" styleClass="w-full">
-                    <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
-                    <f:selectItems value="#{partidoBean.equipos}" var="equipo"
-                                   itemValue="#{equipo.nombre}" itemLabel="#{equipo.nombre}" />
-                </p:selectOneMenu>
-            </div>
-
-            <div class="form-field">
-                <p:outputLabel for="fecha" value="Fecha del partido" />
-                <p:datePicker id="fecha" value="#{partidoBean.fecha}" pattern="yyyy-MM-dd" styleClass="w-full" />
-            </div>
-
-            <div class="form-field">
-                <p:outputLabel for="hora" value="Hora del partido" />
-                <p:inputText id="hora" value="#{partidoBean.hora}" placeholder="HH:mm" styleClass="w-full" />
-            </div>
-
-            <div class="form-field">
-                <p:outputLabel for="lugar" value="Lugar del partido" />
-                <p:inputText id="lugar" value="#{partidoBean.lugar}" styleClass="w-full" />
-            </div>
-
-            <p:commandButton value="Guardar partido" action="#{partidoBean.guardarPartido}"
-                             update="@form" styleClass="save-button" />
-        </div>
-    </h:form>
-</h:body>
-</html>
+        </h:form>
+    </ui:define>
+</ui:composition>
