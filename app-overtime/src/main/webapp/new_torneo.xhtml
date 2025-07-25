@@ -7,52 +7,77 @@
       xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/WEB-INF/templates/base.xhtml">
-    <ui:define name="title-view">Nuevo Torneo - OverTime</ui:define>
+
+    <ui:define name="title-view">
+        Nuevo Torneo - OverTime
+    </ui:define>
 
     <ui:define name="content">
         <h:form style="width:100%; max-width:500px;">
             <div style="background-color:#fff; padding:2rem; border-radius:1rem; box-shadow:0 0 10px rgba(0,0,0,0.1); width:100%;">
-                <h2 style="text-align:center; margin-bottom:2rem;">Crear Nuevo Torneo</h2>
+
+                <h2 style="text-align:center; margin-bottom:2rem;">
+                    Crear Nuevo Torneo
+                </h2>
 
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate/>
                 </p:messages>
 
-                <p:inputText value="#{torneoBean.nombreTorneo}"
-                             placeholder="Nombre del Torneo"
-                             style="width:100%; margin-bottom:1.25rem;"
-                             required="true" requiredMessage="El nombre del torneo es obligatorio"/>
+                <!-- Nombre del torneo -->
+                <p:inputText
+                        value="#{torneoBean.nombreTorneo}"
+                        placeholder="Nombre del Torneo"
+                        style="width:100%; margin-bottom:1.5rem;"
+                        required="true"
+                        requiredMessage="El nombre del torneo es obligatorio"/>
 
-                <p:inputText value="#{torneoBean.categoria}"
-                             placeholder="Categoría"
-                             style="width:100%; margin-bottom:1.25rem;"
-                             required="true" requiredMessage="La categoría es obligatoria"/>
+                <!-- Categoría -->
+                <p:inputText
+                        value="#{torneoBean.categoria}"
+                        placeholder="Categoría"
+                        style="width:100%; margin-bottom:2rem;"
+                        required="true"
+                        requiredMessage="La categoría es obligatoria"/>
 
-                <p:calendar value="#{torneoBean.fechaInicio}"
+                <!-- Fechas agrupadas -->
+                <div style="display:flex; flex-direction:column; gap:1.5rem; margin-bottom:2rem;">
+                    <p:calendar
+                            value="#{torneoBean.fechaInicio}"
                             pattern="dd/MM/yyyy"
                             placeholder="Fecha de Inicio"
-                            style="width:100%; margin-bottom:1.25rem;"
-                            required="true" requiredMessage="La fecha de inicio es obligatoria"/>
+                            style="width:100%;"
+                            required="true"
+                            requiredMessage="La fecha de inicio es obligatoria"/>
 
-                <p:calendar value="#{torneoBean.fechaFin}"
+                    <p:calendar
+                            value="#{torneoBean.fechaFin}"
                             pattern="dd/MM/yyyy"
                             placeholder="Fecha de Fin"
-                            style="width:100%; margin-bottom:2rem;"
-                            required="true" requiredMessage="La fecha de fin es obligatoria"/>
+                            style="width:100%;"
+                            required="true"
+                            requiredMessage="La fecha de fin es obligatoria"/>
+                </div>
 
-                <p:commandButton value="Crear Torneo"
-                                 action="#{torneoBean.crearTorneo}"
-                                 icon="pi pi-check"
-                                 style="width:100%; background-color:#ff6600; color:white; font-weight:bold; margin-bottom:1.5rem;"
-                                 update="@form"/>
+                <!-- Botón Crear Torneo -->
+                <p:commandButton
+                        value="Crear Torneo"
+                        action="#{torneoBean.crearTorneo}"
+                        icon="pi pi-check"
+                        style="width:100%; background-color:#ff6600; color:white; font-weight:bold; margin-bottom:2rem;"
+                        update="@form"/>
 
+                <!-- Enlace Salir como botón -->
                 <div style="text-align:center;">
-                    <h:outputLink value="home.xhtml" style="color:#003366; font-weight:bold;">
-                       Salir
+                    <h:outputLink value="home.xhtml"
+                                  style="display:inline-block; padding:0.75rem 1.5rem; background-color:#003366; color:white; font-weight:bold; border-radius:0.5rem; text-decoration:none;">
+                        Salir
                     </h:outputLink>
                 </div>
+
             </div>
         </h:form>
     </ui:define>
+
 </ui:composition>
 </html>
