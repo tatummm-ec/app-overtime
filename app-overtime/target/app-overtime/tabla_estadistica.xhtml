@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+    <ui:define name="title-view">Tabla de Posiciones - OverTime</ui:define>
+
+    <ui:define name="content">
+        <h:form style="width:100%; max-width:1000px;">
+            <div style="background-color:#fff; padding:2rem; border-radius:1rem; box-shadow:0 0 10px rgba(0,0,0,0.1); width:100%;">
+                <h2 style="text-align:center; margin-bottom:2rem; color:#FF6B00;">Tabla de Posiciones</h2>
+
+                <p:dataTable value="#{tablaPosicionesBean.posiciones}" var="pos" responsiveLayout="scroll"
+                             style="margin-bottom:2rem;">
+
+                    <p:column headerText="Equipo">
+                        <h:outputText value="#{pos.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="PJ">
+                        <h:outputText value="#{pos.partidosJugados}" />
+                    </p:column>
+
+                    <p:column headerText="PG">
+                        <h:outputText value="#{pos.partidosGanados}" />
+                    </p:column>
+
+                    <p:column headerText="PE">
+                        <h:outputText value="#{pos.partidosEmpatados}" />
+                    </p:column>
+
+                    <p:column headerText="PP">
+                        <h:outputText value="#{pos.partidosPerdidos}" />
+                    </p:column>
+
+                    <p:column headerText="GF">
+                        <h:outputText value="#{pos.golesFavor}" />
+                    </p:column>
+
+                    <p:column headerText="GC">
+                        <h:outputText value="#{pos.golesContra}" />
+                    </p:column>
+
+                    <p:column headerText="DG">
+                        <h:outputText value="#{pos.golDiferencia}" />
+                    </p:column>
+
+                    <p:column headerText="Pts">
+                        <h:outputText value="#{pos.puntos}" />
+                    </p:column>
+                </p:dataTable>
+
+                <p:commandButton value="Volver"
+                                 action="torneo.xhtml?faces-redirect=true"
+                                 icon="pi pi-arrow-left"
+                                 style="width:100%; background-color:#ff6600; color:white; font-weight:bold;" />
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

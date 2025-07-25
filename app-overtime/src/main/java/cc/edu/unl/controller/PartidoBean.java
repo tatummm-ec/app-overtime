@@ -1,12 +1,15 @@
 package cc.edu.unl.controller;
 
 import cc.edu.unl.business.PartidoService;
+import cc.edu.unl.business.EquipoService; // ¡Asegúrate de tener este servicio!
 import cc.edu.unl.domain.Equipo;
 import cc.edu.unl.domain.Partido;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.faces.context.FacesContext; // Importar FacesContext
+import jakarta.faces.application.FacesMessage; // Importar FacesMessage
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -22,28 +25,31 @@ public class PartidoBean implements Serializable {
     @Inject
     private PartidoService partidoService;
 
+    @Inject
+    private EquipoService equipoService; // Necesitas un EquipoService para cargar la lista de equipos
+
     private Partido partido;
-
     private List<Partido> partidos;
+    private List<Equipo> equipos;
 
-    private List<Equipo> equipos;  // Para los selectOneMenu de equipos
-
-    // Valores temporales para el formulario
-    private String equipoLocal;
-    private String equipoVisitante;
-    private LocalDate fecha;
-    private LocalTime hora;
-    private String lugar;
+    // Propiedades para el formulario de creación de un nuevo partido
+    // ¡Estas deben ser de tipo Equipo, no String!
+    private Equipo nuevoEquipoLocal;
+    private Equipo nuevoEquipoVisitante;
+    private LocalDate nuevaFecha;
+    private LocalTime nuevaHora;
+    private String nuevoLugar;
 
     @PostConstruct
     public void init() {
         partido = new Partido();
         partidos = partidoService.obtenerPartidos();
-        // Aquí deberías cargar los equipos de algún servicio, asumo que lo tienes:
-        // Por ahora dejo equipos = null o cargarlo después
+        // Cargar los equipos disponibles al inicializar el bean
+        // Este es el punto clave para que los selectOneMenu funcionen
+        equipos = equipoService.obtenerTodosLosEquipos();
     }
 
-    // Getter y setters
+    // --- Getters y setters para el objeto Partido y la lista de Partidos ---
     public Partido getPartido() {
         return partido;
     }
@@ -56,6 +62,7 @@ public class PartidoBean implements Serializable {
         return partidos;
     }
 
+    // --- Getter y setter para la lista de Equipos ---
     public List<Equipo> getEquipos() {
         return equipos;
     }
@@ -64,71 +71,77 @@ public class PartidoBean implements Serializable {
         this.equipos = equipos;
     }
 
-    public String getEquipoLocal() {
-        return equipoLocal;
+    // --- Getters y setters para los campos del formulario de nuevo partido ---
+    public Equipo getNuevoEquipoLocal() {
+        return nuevoEquipoLocal;
     }
 
-    public void setEquipoLocal(String equipoLocal) {
-        this.equipoLocal = equipoLocal;
+    public void setNuevoEquipoLocal(Equipo nuevoEquipoLocal) {
+        this.nuevoEquipoLocal = nuevoEquipoLocal;
     }
 
-    public String getEquipoVisitante() {
-        return equipoVisitante;
+    public Equipo getNuevoEquipoVisitante() {
+        return nuevoEquipoVisitante;
     }
 
-    public void setEquipoVisitante(String equipoVisitante) {
-        this.equipoVisitante = equipoVisitante;
+    public void setNuevoEquipoVisitante(Equipo nuevoEquipoVisitante) {
+        this.nuevoEquipoVisitante = nuevoEquipoVisitante;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDate getNuevaFecha() {
+        return nuevaFecha;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setNuevaFecha(LocalDate nuevaFecha) {
+        this.nuevaFecha = nuevaFecha;
     }
 
-    public LocalTime getHora() {
-        return hora;
+    public LocalTime getNuevaHora() {
+        return nuevaHora;
     }
 
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
+    public void setNuevaHora(LocalTime nuevaHora) {
+        this.nuevaHora = nuevaHora;
     }
 
-    public String getLugar() {
-        return lugar;
+    public String getNuevoLugar() {
+        return nuevoLugar;
     }
 
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
+    public void setNuevoLugar(String nuevoLugar) {
+        this.nuevoLugar = nuevoLugar;
     }
 
-    // Acción para guardar un partido nuevo
+    // --- Acción para guardar un partido nuevo ---
     public String guardarPartido() {
         try {
             Partido nuevo = new Partido();
-            nuevo.setEquipoLocal(equipoLocal);
-            nuevo.setEquipoVisitante(equipoVisitante);
-            nuevo.setFecha(fecha);
-            nuevo.setHora(hora);
-            nuevo.setLugar(lugar);
+            nuevo.setEquipoLocal(nuevoEquipoLocal); // ¡Asignamos objetos Equipo!
+            nuevo.setEquipoVisitante(nuevoEquipoVisitante); // ¡Asignamos objetos Equipo!
+            nuevo.setFecha(nuevaFecha);
+            nuevo.setHora(nuevaHora);
+            nuevo.setLugar(nuevoLugar);
+
             partidoService.organizarPartido(nuevo);
-            partidos = partidoService.obtenerPartidos(); // refrescar lista
-            limpiarFormulario();
-            return "partidos.xhtml?faces-redirect=true";
+            partidos = partidoService.obtenerPartidos(); // Refresca la lista
+            limpiarFormulario(); // Limpia los campos del formulario
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Partido registrado correctamente."));
+            return "partidos.xhtml?faces-redirect=true"; // Redirige a la página de partidos
         } catch (Exception e) {
-            // Manejar error, mostrar mensaje en JSF
-            return null;
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo registrar el partido: " + e.getMessage()));
+            System.err.println("Error al guardar partido: " + e.getMessage());
+            return null; // Permanece en la misma página si hay un error
         }
     }
 
+    // --- Método para limpiar los campos del formulario ---
     private void limpiarFormulario() {
-        equipoLocal = null;
-        equipoVisitante = null;
-        fecha = null;
-        hora = null;
-        lugar = null;
+        nuevoEquipoLocal = null;
+        nuevoEquipoVisitante = null;
+        nuevaFecha = null;
+        nuevaHora = null;
+        nuevoLugar = null;
     }
-
 }

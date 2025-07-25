@@ -13,45 +13,46 @@ import java.util.List;
 @SessionScoped
 public class AuthenticationBean implements Serializable {
 
-    private String username; // Nombre de usuario ingresado
-    private String password; // Contraseña ingresada
-    private boolean userLoggedIn = false; // Bandera de estado de sesión
+    private String username;
+    private String password;
+    private boolean userLoggedIn = false;
 
     // Lista estática de usuarios registrados
     private static List<User> registeredUsers = new ArrayList<>();
 
-    // Bloque estático para agregar un usuario de prueba al inicio
     static {
-        // Usuario de demostración por defecto
         registeredUsers.add(new User("Admin", "admin@example.com", "admin", "1234"));
     }
 
-    // Método para autenticar usuario
+
     public String login() {
-        // Se itera mediante los usuarios registrados para encontrar una coincidencia
         for (User user : registeredUsers) {
-            // Verifica si el nombre de usuario y contraseña coinciden
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                this.userLoggedIn = true; // Marca al usuario como autenticado
-                // Muestra mensaje de éxito en la interfaz
+                this.userLoggedIn = true;
                 FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "¡Bienvenido, " + username + "!"));
-                return "index.xhtml?faces-redirect=true"; // Redirecciona al índice
+                return "index.xhtml?faces-redirect=true";
+                //return "index.xhtml?faces-redirect=true"; // Redirecciona al índice
+
             }
+            if (!userLoggedIn) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Credenciales Incorrectas", "¡Pon bien la clave " + username + "!"));
+                return null;
+
+            }
+
         }
 
-        // Si no se encuentra registro, muestra mensaje de error
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Usuario o contraseña incorrectos."));
-        return null; // Permanece en la misma página
+        return null;
     }
 
-    // Método para cerrar sesión
+
     public String logout() {
-        // Invalida la sesión actual
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        this.userLoggedIn = false; // Reinicia el estado de sesión
-        // Muestra mensaje de cierre de sesión
+        this.userLoggedIn = false;
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Sesión cerrada correctamente."));
         return "login.xhtml?faces-redirect=true"; // Redirecciona a login
@@ -66,23 +67,22 @@ public class AuthenticationBean implements Serializable {
 
     public boolean isUserLoggedIn() { return userLoggedIn; }
 
-    // Método para agregar usuarios al sistema (registro)
+
     public static void addRegisteredUser(User user) {
-        // Verifica que no sea nulo y que el nombre de usuario no esté en uso
         if (user != null && !isUsernameTaken(user.getUsername())) {
-            registeredUsers.add(user); // Agrega el usuario
-            System.out.println("User registered: " + user.getUsername()); // Muestra en consola (PRUEBA)
+            registeredUsers.add(user);
+            System.out.println("User registered: " + user.getUsername());
         }
     }
 
-    // Método para comprobar si el nombre de usuario ya está en uso
+
     public static boolean isUsernameTaken(String username) {
         for (User user : registeredUsers) {
             if (user.getUsername().equalsIgnoreCase(username)) {
-                return true; // Usuario ya existe
+                return true;
             }
         }
-        return false; // Usuario disponible
+        return false;
     }
 
     // Clase interna estática que representa un usuario

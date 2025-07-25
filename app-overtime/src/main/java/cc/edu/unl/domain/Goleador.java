@@ -1,14 +1,13 @@
 package cc.edu.unl.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.*;
+
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Equipo.findAll", query = "SELECT e FROM Equipo e")
+        @NamedQuery(name = "Goleador.findAll", query = "SELECT g FROM Goleador g")
 })
 public class Goleador {
+
     @Id
     private Long id;
 
@@ -16,6 +15,7 @@ public class Goleador {
     private int goles;
 
     // Getters y setters
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

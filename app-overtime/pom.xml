@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.unl.cc.jbrew</groupId>
+    <groupId>edu.unl.cc</groupId>
     <artifactId>overtime</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>JBrews-web Coffe bar</name>
+    <name>Overtime sports</name>
     <description>
         The project demonstrates how you can develop applications with the
         Jakarta EE platform using widely adopted architectural best
@@ -34,7 +34,7 @@
         <liberty.bootstrap.driver.jdbc.dir>${driver.jdbc.dir}</liberty.bootstrap.driver.jdbc.dir>
         <liberty.bootstrap.db.server.name>${db.server.name}</liberty.bootstrap.db.server.name>
         <liberty.bootstrap.db.port.number>${db.port.number}</liberty.bootstrap.db.port.number>
-
+        <liberty.runtime.version>23.0.0.9</liberty.runtime.version>
     </properties>
 
     <dependencies>
@@ -58,7 +58,7 @@
     </dependencies>
 
     <build>
-        <finalName>jbrew-web</finalName>
+        <finalName>app-overtime</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -85,6 +85,7 @@
                     </execution>
                 </executions>
                 <configuration>
+
                     <artifactItems>
                         <artifactItem>
                             <groupId>com.mysql</groupId>

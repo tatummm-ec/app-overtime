@@ -1,37 +1,41 @@
 package cc.edu.unl.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Equipo.findAll", query = "SELECT e FROM Equipo e")
+        @NamedQuery(name = "Partido.findAll", query = "SELECT p FROM Partido p")
 })
 public class Partido {
+
     @Id
     private Long id;
 
-    private String equipoLocal;
-    private String equipoVisitante;
+    @ManyToOne
+    @JoinColumn(name = "equipo_local_id")
+    private Equipo equipoLocal;
+
+    @ManyToOne
+    @JoinColumn(name = "equipo_visitante_id")
+    private Equipo equipoVisitante;
 
     private LocalDate fecha;
     private LocalTime hora;
     private String lugar;
 
     // Getters y setters
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getEquipoLocal() { return equipoLocal; }
-    public void setEquipoLocal(String equipoLocal) { this.equipoLocal = equipoLocal; }
+    public Equipo getEquipoLocal() { return equipoLocal; }
+    public void setEquipoLocal(Equipo equipoLocal) { this.equipoLocal = equipoLocal; }
 
-    public String getEquipoVisitante() { return equipoVisitante; }
-    public void setEquipoVisitante(String equipoVisitante) { this.equipoVisitante = equipoVisitante; }
+    public Equipo getEquipoVisitante() { return equipoVisitante; }
+    public void setEquipoVisitante(Equipo equipoVisitante) { this.equipoVisitante = equipoVisitante; }
 
     public LocalDate getFecha() { return fecha; }
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
@@ -42,4 +46,3 @@ public class Partido {
     public String getLugar() { return lugar; }
     public void setLugar(String lugar) { this.lugar = lugar; }
 }
-

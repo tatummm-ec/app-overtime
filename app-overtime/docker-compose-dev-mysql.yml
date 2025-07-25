@@ -2,10 +2,10 @@
 services:
 
   # Base de datos MySQL
-  jbrew-mysql-db:
+  overtime-mysql-db:
     image: mysql:${MYSQL_VERSION}
     restart: unless-stopped
-    container_name: jbrew-mysql-db-container
+    container_name: overtime-mysql-db-container
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
@@ -14,10 +14,10 @@ services:
     ports:
       - ${DB_MYSQL_PORT_PUBLIC}:3306
     volumes:
-      - jbrew-mysql-data:/var/lib/mysql
-      #- ./init_db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - overtime-mysql-data:/var/lib/mysql
+      - ./init_db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      jbrew-network:
+      overtime-network:
         ipv4_address: 173.21.0.250
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$${MYSQL_USER}", "-p$${MYSQL_PASSWORD}"]
@@ -33,24 +33,21 @@ services:
     ports:
       - 8081:8080
     depends_on:
-      - jbrew-mysql-db
+      - overtime-mysql-db
     networks:
-      jbrew-network:
+      overtime-network:
         ipv4_address: 173.21.0.253
 
 networks:
-  jbrew-network:
+  overtime-network:
     driver: bridge
-    #driver_opts:
-    #    parent: eth0
     ipam:
-      driver: default
       config:
         - subnet: 173.21.0.0/24
 
 volumes:
-  jbrew-mysql-data:
-    name: jbrew-mysql-data-local
+  overtime-mysql-data:
+    name: overtime-mysql-data-local
     driver: local
     driver_opts:
       type: none
