@@ -17,23 +17,27 @@
             </h2>
 
             <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom:2rem;">
-                <p:commandButton value="Ver Estadísticas"
-                                 icon="pi pi-chart-line"
-                                 action="tabla.xhtml?faces-redirect=true"
-                                 style="background-color:#007bff; color:white; font-weight:bold;"/>
+                <p:button value="Ver Estadísticas"
+                          icon="pi pi-chart-line"
+                          outcome="tabla_estadistica"
+                          style="background-color:#007bff; color:white; font-weight:bold;" />
 
-                <p:commandButton value="Registrar Partido"
-                                 icon="pi pi-plus-circle"
-                                 action="new_partido.xhtml?faces-redirect=true"
-                                 style="background-color:#28a745; color:white; font-weight:bold;"/>
+                <p:button value="Registrar Partido"
+                          icon="pi pi-plus-circle"
+                          outcome="new_partido"
+                          style="background-color:#28a745; color:white; font-weight:bold;" />
+
+                <p:button value="Ver Goleadores"
+                          icon="pi pi-star-fill"
+                          outcome="tabla_goleadores"
+                          style="background-color:#ffc107; color:white; font-weight:bold;" />
             </div>
 
-            <p:messages id="messages" showDetail="true" closable="true">
-                <p:autoUpdate/>
-            </p:messages>
 
-            <p:dataTable value="#{torneoBean.proximosPartidos}" var="partido"
-                         stripedRows="true" responsiveLayout="scroll"
+
+
+            <p:dataTable value="#{partidoBean.partidos}" var="partido"
+                         responsiveLayout="scroll"
                          emptyMessage="No hay partidos programados aún."
                          styleClass="ui-datatable-hoverable"
                          style="margin:auto; max-width:900px;">
@@ -46,20 +50,25 @@
 
                 <p:column headerText="Fecha" style="text-align:center;">
                     <h:outputText value="#{partido.fecha}">
-                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Hora" style="text-align:center;">
+                    <h:outputText value="#{partido.hora}">
+                        <f:convertDateTime pattern="HH:mm"/>
                     </h:outputText>
                 </p:column>
 
                 <p:column headerText="Equipo Local" style="text-align:center;">
-                    #{partido.equipoLocal}
+                    <h:outputText value="#{partido.equipoLocal.nombre}"/>
                 </p:column>
-
                 <p:column headerText="Equipo Visitante" style="text-align:center;">
-                    #{partido.equipoVisitante}
+                    <h:outputText value="#{partido.equipoVisitante.nombre}"/>
                 </p:column>
 
                 <p:column headerText="Ubicación" style="text-align:center;">
-                    #{partido.ubicacion}
+                    <h:outputText value="#{partido.lugar}"/>
                 </p:column>
             </p:dataTable>
 

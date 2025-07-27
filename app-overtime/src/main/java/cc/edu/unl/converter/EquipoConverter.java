@@ -9,8 +9,7 @@ import jakarta.faces.convert.Converter;
 import jakarta.faces.convert.FacesConverter;
 import jakarta.inject.Inject; // Para inyectar el EquipoService
 
-// Si usas CDI 4 (Jakarta EE 10+), @FacesConverter puede ser inyectable con @Named o @ApplicationScoped
-// Si no, debes configurarlo en faces-config.xml o usar @FacesConverter(value="equipoConverter")
+
 @FacesConverter(value = "equipoConverter") // Define el nombre del conversor
 public class EquipoConverter implements Converter<Equipo> {
 

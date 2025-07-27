@@ -31,4 +31,11 @@ public class PartidoService implements Serializable {
     public void eliminarPartido(Long id) {
         crudGenericService.delete(Partido.class, id);
     }
+
+    public List<Partido> obtenerPartidosPorTorneo(Long torneoId) {
+        return crudGenericService.getEntityManager()
+                .createQuery("SELECT p FROM Partido p WHERE p.torneo.id = :torneoId", Partido.class)
+                .setParameter("torneoId", torneoId)
+                .getResultList();
+    }
 }

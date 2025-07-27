@@ -2,7 +2,9 @@ C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\busine
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\business\PartidoService.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\business\TablaGoleadoresService.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\business\TablaPosicionesService.java
+C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\business\TorneoService.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\controller\AuthenticationBean.java
+C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\controller\HomeBean.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\controller\PartidoBean.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\controller\RegisterBean.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\controller\TablaGoleadoresBean.java
@@ -12,4 +14,6 @@ C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\conver
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\domain\Equipo.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\domain\Goleador.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\domain\Partido.java
+C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\domain\Torneo.java
+C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\faces\FacesUtil.java
 C:\SandboxPOO\Proyecto\app-overtime\app-overtime\src\main\java\cc\edu\unl\repository\CrudGenericService.java

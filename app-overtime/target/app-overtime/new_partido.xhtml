@@ -21,16 +21,20 @@
                 <p:outputLabel for="local" value="Equipo Local" />
                 <p:selectOneMenu id="local" value="#{partidoBean.nuevoEquipoLocal}"
                                  style="width:100%; margin-bottom:1.25rem;"
-                                 converter="equipoConverter"> <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                                 converter="equipoConverter">
+                    <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
                     <f:selectItems value="#{partidoBean.equipos}" var="equipo"
-                                   itemValue="#{equipo}" itemLabel="#{equipo.nombre}" /> </p:selectOneMenu>
+                                   itemValue="#{equipo}" itemLabel="#{equipo.nombre}" />
+                </p:selectOneMenu>
 
                 <p:outputLabel for="visitante" value="Equipo Visitante" />
                 <p:selectOneMenu id="visitante" value="#{partidoBean.nuevoEquipoVisitante}"
                                  style="width:100%; margin-bottom:1.25rem;"
-                                 converter="equipoConverter"> <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                                 converter="equipoConverter">
+                    <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
                     <f:selectItems value="#{partidoBean.equipos}" var="equipo"
-                                   itemValue="#{equipo}" itemLabel="#{equipo.nombre}" /> </p:selectOneMenu>
+                                   itemLabel="#{equipo.nombre}" itemValue="#{equipo}"/>
+                </p:selectOneMenu>
 
                 <p:outputLabel for="fecha" value="Fecha del partido" />
                 <p:datePicker id="fecha" value="#{partidoBean.nuevaFecha}" pattern="yyyy-MM-dd"
@@ -39,9 +43,10 @@
                 <p:outputLabel for="hora" value="Hora del partido" />
                 <p:inputText id="hora" value="#{partidoBean.nuevaHora}" placeholder="HH:mm"
                              style="width:100%; margin-bottom:1.25rem;">
-                    <f:convertDateTime pattern="HH:mm" type="localTime"/> </p:inputText>
+                    <f:convertDateTime pattern="HH:mm" type="localTime"/>
+                </p:inputText>
 
-                <p:outputLabel for="lugar" value="Lugar del partido" />
+                <p:outputLabel for  ="lugar" value="Lugar del partido" />
                 <p:inputText id="lugar" value="#{partidoBean.nuevoLugar}"
                              style="width:100%; margin-bottom:2rem;" />
 
@@ -49,11 +54,14 @@
                                  action="#{partidoBean.guardarPartido}"
                                  icon="pi pi-check"
                                  style="width:100%; background-color:#ff6600; color:white; font-weight:bold; margin-bottom:1.5rem;"
-                                 update="@form messages"/> <div style="text-align:center;">
-                <h:outputLink value="home.xhtml" style="color:#003366; font-weight:bold;">
-                    Salir
-                </h:outputLink>
-            </div>
+                                 update="@form messages"/>
+                <div style="text-align:center;">
+                    <p:commandButton value="Volver"
+                                     action="#{torneoBean.irATorneo(torneoBean.torneoSeleccionado.id)}"
+                                     icon="pi pi-arrow-left"
+                                     style="width:100%; background-color:#003366; color:white; font-weight:bold;" />
+
+                </div>
             </div>
         </h:form>
     </ui:define>

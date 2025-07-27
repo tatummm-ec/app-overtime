@@ -9,6 +9,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.CriteriaUpdate;
 import jakarta.validation.constraints.NotNull;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 
 
 @Stateless
-public class CrudGenericService {
+public class CrudGenericService implements Serializable {
 
     private static final Logger LOGGER = Logger.getLogger(CrudGenericService.class.getSimpleName());
 

@@ -12,11 +12,17 @@ import java.time.LocalTime;
 public class Partido {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "equipo_local_id")
     private Equipo equipoLocal;
+
+    @ManyToOne
+    @JoinColumn(name = "torneo_id")
+    private Torneo torneo;
+
 
     @ManyToOne
     @JoinColumn(name = "equipo_visitante_id")
@@ -45,4 +51,12 @@ public class Partido {
 
     public String getLugar() { return lugar; }
     public void setLugar(String lugar) { this.lugar = lugar; }
+
+    public Torneo getTorneo() {
+        return torneo;
+    }
+
+    public void setTorneo(Torneo torneo) {
+        this.torneo = torneo;
+    }
 }

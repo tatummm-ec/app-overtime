@@ -4,13 +4,12 @@ import cc.edu.unl.business.PartidoService;
 import cc.edu.unl.business.EquipoService; // ¡Asegúrate de tener este servicio!
 import cc.edu.unl.domain.Equipo;
 import cc.edu.unl.domain.Partido;
+import cc.edu.unl.faces.FacesUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.faces.context.FacesContext; // Importar FacesContext
-import jakarta.faces.application.FacesMessage; // Importar FacesMessage
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,13 +19,18 @@ import java.util.List;
 @SessionScoped
 public class PartidoBean implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Inject
     private PartidoService partidoService;
 
     @Inject
-    private EquipoService equipoService; // Necesitas un EquipoService para cargar la lista de equipos
+    private TorneoBean torneoBean;
+
+
+    @Inject
+    private EquipoService equipoService; //  para cargar la lista de equipos
 
     private Partido partido;
     private List<Partido> partidos;
@@ -42,12 +46,60 @@ public class PartidoBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        partido = new Partido();
-        partidos = partidoService.obtenerPartidos();
-        // Cargar los equipos disponibles al inicializar el bean
-        // Este es el punto clave para que los selectOneMenu funcionen
-        equipos = equipoService.obtenerTodosLosEquipos();
+        if (torneoBean.getTorneoSeleccionado() != null) {
+            partidos = partidoService.obtenerPartidosPorTorneo(torneoBean.getTorneoSeleccionado().getId());
+            equipos = torneoBean.getTorneoSeleccionado().getEquipos(); // si la relación existe
+        } else {
+            partidos = List.of();
+            equipos = List.of();
+        }
     }
+
+
+    // --- Acción para guardar un partido nuevo ---
+    public String guardarPartido() {
+        if (nuevoEquipoLocal == null || nuevoEquipoVisitante == null) {
+            FacesUtil.addErrorMessage("Error", "Debe seleccionar ambos equipos.");
+            return null;
+        }
+
+        if (nuevoEquipoLocal.equals(nuevoEquipoVisitante)) {
+            FacesUtil.addErrorMessage("Error", "El equipo local y visitante no pueden ser el mismo.");
+            return null;
+        }
+
+        try {
+            Partido nuevo = new Partido();
+            nuevo.setEquipoLocal(nuevoEquipoLocal);
+            nuevo.setEquipoVisitante(nuevoEquipoVisitante);
+            nuevo.setFecha(nuevaFecha);
+            nuevo.setHora(nuevaHora);
+            nuevo.setLugar(nuevoLugar);
+            nuevo.setTorneo(torneoBean.getTorneoSeleccionado());
+
+            partidoService.organizarPartido(nuevo);
+            partidos = partidoService.obtenerPartidos(); // Refresca la lista
+            limpiarFormulario();
+            partidos = partidoService.obtenerPartidosPorTorneo(torneoBean.getTorneoSeleccionado().getId());
+            FacesUtil.addSuccessMessage("Éxito", "Partido registrado correctamente.");
+            return "torneo.xhtml?faces-redirect=true";
+
+        } catch (Exception e) {
+            FacesUtil.addErrorMessage("Error", "No se pudo registrar el partido" );
+            System.err.println("Error al guardar partido: " + e.getMessage());
+            return null; // Permanece en la misma página si hay un error
+        }
+    }
+
+    // --- Limpiar los campos del formulario ---
+    private void limpiarFormulario() {
+        nuevoEquipoLocal = null;
+        nuevoEquipoVisitante = null;
+        nuevaFecha = null;
+        nuevaHora = null;
+        nuevoLugar = null;
+    }
+
 
     // --- Getters y setters para el objeto Partido y la lista de Partidos ---
     public Partido getPartido() {
@@ -112,36 +164,4 @@ public class PartidoBean implements Serializable {
         this.nuevoLugar = nuevoLugar;
     }
 
-    // --- Acción para guardar un partido nuevo ---
-    public String guardarPartido() {
-        try {
-            Partido nuevo = new Partido();
-            nuevo.setEquipoLocal(nuevoEquipoLocal); // ¡Asignamos objetos Equipo!
-            nuevo.setEquipoVisitante(nuevoEquipoVisitante); // ¡Asignamos objetos Equipo!
-            nuevo.setFecha(nuevaFecha);
-            nuevo.setHora(nuevaHora);
-            nuevo.setLugar(nuevoLugar);
-
-            partidoService.organizarPartido(nuevo);
-            partidos = partidoService.obtenerPartidos(); // Refresca la lista
-            limpiarFormulario(); // Limpia los campos del formulario
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Partido registrado correctamente."));
-            return "partidos.xhtml?faces-redirect=true"; // Redirige a la página de partidos
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo registrar el partido: " + e.getMessage()));
-            System.err.println("Error al guardar partido: " + e.getMessage());
-            return null; // Permanece en la misma página si hay un error
-        }
-    }
-
-    // --- Método para limpiar los campos del formulario ---
-    private void limpiarFormulario() {
-        nuevoEquipoLocal = null;
-        nuevoEquipoVisitante = null;
-        nuevaFecha = null;
-        nuevaHora = null;
-        nuevoLugar = null;
-    }
 }

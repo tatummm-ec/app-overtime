@@ -1,5 +1,6 @@
 package cc.edu.unl.controller;
 
+import cc.edu.unl.faces.FacesUtil;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import jakarta.faces.context.FacesContext;
@@ -18,15 +19,13 @@ public class RegisterBean {
     public String register() {
         // Validar que las contraseñas coincidan
         if (!password.equals(confirmPassword)) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Las contraseñas no coinciden."));
+            FacesUtil.addErrorMessage("Error", "Las contraseñas no coinciden.");
             return null;
         }
 
         // Verificar si el nombre de usuario ya existe
         if (AuthenticationBean.isUsernameTaken(username)) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El nombre de usuario ya está en uso."));
+            FacesUtil.addErrorMessage("Error", "El nombre de usuario ya está en uso.");
             return null;
         }
 
@@ -35,10 +34,7 @@ public class RegisterBean {
         AuthenticationBean.addRegisteredUser(newUser);
 
         // Mensaje de éxito y redirección a login
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "¡Registro completado! Ahora puedes iniciar sesión."));
-
+        FacesUtil.addSuccessMessageAndKeep("Éxito", "¡Registro completado! Ahora puedes iniciar sesión.");
         return "login.xhtml?faces-redirect=true";
     }
 

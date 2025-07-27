@@ -55,9 +55,10 @@
                 </p:dataTable>
 
                 <p:commandButton value="Volver"
-                                 action="torneo.xhtml?faces-redirect=true"
+                                 action="#{torneoBean.irATorneo(torneoBean.torneoSeleccionado.id)}"
                                  icon="pi pi-arrow-left"
                                  style="width:100%; background-color:#ff6600; color:white; font-weight:bold;" />
+
             </div>
         </h:form>
     </ui:define>
