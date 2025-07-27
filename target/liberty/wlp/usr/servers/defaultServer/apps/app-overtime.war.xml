@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive>
+    <dir sourceOnDisk="/home/alejo/sandbox/app-overtime/src/main/webapp" targetInArchive="/"/>
+    <dir sourceOnDisk="/home/alejo/sandbox/app-overtime/target/classes" targetInArchive="/WEB-INF/classes"/>
+    <file sourceOnDisk="/home/alejo/.m2/repository/org/primefaces/primefaces/15.0.0/primefaces-15.0.0-jakarta.jar" targetInArchive="/WEB-INF/lib/primefaces-15.0.0-jakarta.jar"/>
+    <file sourceOnDisk="/home/alejo/.m2/repository/com/mysql/mysql-connector-j/9.3.0/mysql-connector-j-9.3.0.jar" targetInArchive="/WEB-INF/lib/mysql-connector-j-9.3.0.jar"/>
+    <file sourceOnDisk="/home/alejo/.m2/repository/com/google/protobuf/protobuf-java/4.29.0/protobuf-java-4.29.0.jar" targetInArchive="/WEB-INF/lib/protobuf-java-4.29.0.jar"/>
+    <file sourceOnDisk="/home/alejo/sandbox/app-overtime/target/tmp/META-INF/MANIFEST.MF" targetInArchive="/META-INF/MANIFEST.MF"/>
+</archive>

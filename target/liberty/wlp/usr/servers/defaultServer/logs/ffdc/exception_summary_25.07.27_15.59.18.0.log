@@ -1,0 +1,40 @@
+
+ Index  Count  Time of first Occurrence    Time of last Occurrence     Exception SourceId ProbeId
+------+------+---------------------------+---------------------------+---------------------------
+     0      2   27/7/25, 15:59:18:703 ECT   27/7/25, 15:59:37:094 ECT com.ibm.ws.rsadapter.exceptions.DataStoreAdapterException com.ibm.ejs.j2c.poolmanager.FreePool.createManagedConnectionWithMCWrapper 199
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_15.59.18.0.log
+     1      2   27/7/25, 15:59:18:964 ECT   27/7/25, 15:59:37:097 ECT jakarta.resource.spi.ResourceAllocationException com.ibm.ws.rsadapter.jdbc.WSJdbcDataSource.getConnection 299
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_15.59.18.1.log
+     2      2   27/7/25, 15:59:19:004 ECT   27/7/25, 15:59:37:099 ECT jakarta.persistence.PersistenceException com.ibm.ws.jpa.management.JPAPUnitInfo.createEMFactory 759
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_15.59.19.0.log
+     3      7   27/7/25, 16:00:49:324 ECT   27/7/25, 16:02:26:353 ECT java.lang.RuntimeException com.ibm.wsspi.injectionengine.InjectionBinding.getInjectionObject 408
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.49.0.log
+     4      3   27/7/25, 16:00:49:359 ECT   27/7/25, 16:01:00:062 ECT com.ibm.wsspi.injectionengine.InjectionException com.ibm.ws.cdi.impl.weld.injection.WebSphereInjectionServicesImpl 201
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.49.1.log
+     5      3   27/7/25, 16:00:49:650 ECT   27/7/25, 16:01:00:063 ECT com.ibm.wsspi.injectionengine.InjectionException com.ibm.ws.cdi.impl.weld.injection.WebSphereInjectionServicesImpl.inject 248
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.49.2.log
+     6      3   27/7/25, 16:00:49:762 ECT   27/7/25, 16:01:00:063 ECT java.security.PrivilegedActionException com.ibm.ws.cdi.impl.weld.injection.WebSphereInjectionServicesImpl 118
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.49.3.log
+     7      3   27/7/25, 16:00:49:972 ECT   27/7/25, 16:01:00:064 ECT com.ibm.wsspi.injectionengine.InjectionException com.ibm.ws.cdi.impl.managedobject.CDIManagedObject 185
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.49.4.log
+     8      3   27/7/25, 16:00:50:320 ECT   27/7/25, 16:01:00:064 ECT com.ibm.wsspi.injectionengine.InjectionException com.ibm.ejs.container.ManagedBeanOBase.injectInstance 157
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.50.0.log
+     9      3   27/7/25, 16:00:50:588 ECT   27/7/25, 16:01:00:081 ECT jakarta.ejb.EJBException com.ibm.ejs.container.BusinessExceptionMappingStrategy.setUncheckedException 506
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.50.1.log
+    10      3   27/7/25, 16:00:50:600 ECT   27/7/25, 16:01:00:082 ECT com.ibm.websphere.csi.CSITransactionRolledbackException com.ibm.ejs.container.EJSContainer.postInvoke 2326
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.50.2.log
+    11      3   27/7/25, 16:00:51:179 ECT   27/7/25, 16:01:00:103 ECT jakarta.ejb.EJBTransactionRolledbackException com.ibm.ejs.container.BusinessExceptionMappingStrategy.setUncheckedException 506
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.51.0.log
+    12      6   27/7/25, 16:00:51:247 ECT   27/7/25, 16:01:00:396 ECT jakarta.servlet.ServletException com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter 82
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.51.1.log
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.57.0.log
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.01.00.0.log
+    13      3   27/7/25, 16:00:51:660 ECT   27/7/25, 16:01:00:336 ECT jakarta.servlet.ServletException com.ibm.ws.webcontainer.filter.FilterInstanceWrapper.doFilter 144
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.51.2.log
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.57.1.log
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.01.00.1.log
+    14      3   27/7/25, 16:00:51:758 ECT   27/7/25, 16:01:00:396 ECT jakarta.servlet.ServletException com.ibm.ws.webcontainer.filter.WebAppFilterManager.invokeFilters 1064
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.51.3.log
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.00.57.2.log
+                                                                            - /home/alejo/sandbox/app-overtime/target/liberty/wlp/usr/servers/defaultServer/logs/ffdc/ffdc_25.07.27_16.01.00.2.log
+------+------+---------------------------+---------------------------+---------------------------
