@@ -6,20 +6,64 @@
       xmlns:ui="jakarta.faces.facelets"
       xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/WEB-INF/templates/base.xhtml">
+<h:head>
+    <title>Nuevo Torneo - OverTime</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    <ui:define name="title-view">
-        Nuevo Torneo - OverTime
-    </ui:define>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
 
-    <ui:define name="content">
-        <h:form style="width:100%; max-width:500px;">
-            <div style="background-color:#fff; padding:2rem; border-radius:1rem; box-shadow:0 0 10px rgba(0,0,0,0.1); width:100%;">
+        .card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+        }
 
-                <h2 style="text-align:center; margin-bottom:2rem;">Crear Nuevo Torneo</h2>
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .button-secondary {
+            background-color: #999 !important;
+            color: white !important;
+        }
+
+        .button-primary {
+            background-color: #ff6600 !important;
+            color: white !important;
+        }
+
+        .add-button {
+            background-color: #0066cc !important;
+            color: white !important;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <h:form>
+            <div class="card">
+
+                <h2>Crear Nuevo Torneo</h2>
 
                 <p:messages id="messages" showDetail="true" closable="true">
-                    <p:autoUpdate/>
+                    <p:autoUpdate />
                 </p:messages>
 
                 <p:inputText
@@ -27,7 +71,7 @@
                         placeholder="Nombre del Torneo"
                         style="width:100%; margin-bottom:1.5rem;"
                         required="true"
-                        requiredMessage="El nombre del torneo es obligatorio"/>
+                        requiredMessage="El nombre del torneo es obligatorio" />
 
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;">
                     <p:calendar
@@ -49,25 +93,23 @@
 
                 <h3 style="margin-bottom:1rem;">Equipos participantes</h3>
 
-                <div style="display:flex; gap:1rem; margin-bottom:1rem;">
-                    <p:inputText value="#{torneoBean.nombreEquipoTemp}"
-                                 placeholder="Nuevo equipo"
-                                 style="flex:1;" />
+                <p:commandButton
+                        value="Agregar Equipo"
+                        icon="pi pi-plus"
+                        action="#{torneoBean.agregarEquipo}"
+                        update="@form"
+                        styleClass="add-button"
+                        style="margin-bottom: 1rem;" />
 
-                    <p:commandButton
-                            value="+"
-                            action="#{torneoBean.agregarEquipo}"
-                            update="@form"
-                            style="background-color:#0066cc; color:white;" />
-                </div>
-
-                <ui:repeat value="#{torneoBean.nombresEquipos}" var="equipoNombre" varStatus="i">
+                <ui:repeat value="#{torneoBean.equiposTemporales}" var="equipo" varStatus="i">
                     <p:inputText
-                            value="#{torneoBean.nombresEquipos[i.index]}"
+                            value="#{equipo.nombre}"
                             placeholder="Nombre del equipo #{i.index + 1}"
                             style="width:100%; margin-bottom:0.5rem;"
                             required="true"
-                            requiredMessage="El nombre del equipo #{i.index + 1} es obligatorio" />
+                            requiredMessage="El nombre del equipo #{i.index + 1} es obligatorio">
+                        <p:ajax event="blur" update="@form" />
+                    </p:inputText>
                 </ui:repeat>
 
                 <p:commandButton
@@ -75,10 +117,17 @@
                         action="#{torneoBean.crearTorneo}"
                         icon="pi pi-check"
                         ajax="false"
-                        style="width:100%; background-color:#ff6600; color:white; font-weight:bold; margin-top:2rem;" />
+                        styleClass="button-primary"
+                        style="width:100%; font-weight:bold; margin-top:2rem;" />
+
+                <p:commandButton
+                        value="Volver a Inicio"
+                        action="home.xhtml?faces-redirect=true"
+                        icon="pi pi-arrow-left"
+                        styleClass="button-secondary"
+                        style="width:100%; font-weight:bold; margin-top:1rem;" />
             </div>
         </h:form>
-    </ui:define>
-
-</ui:composition>
+    </div>
+</h:body>
 </html>

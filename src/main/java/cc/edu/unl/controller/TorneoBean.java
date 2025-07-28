@@ -7,8 +7,8 @@ import cc.edu.unl.domain.Partido;
 import cc.edu.unl.domain.Torneo;
 import cc.edu.unl.faces.FacesUtil;
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
@@ -18,7 +18,7 @@ import java.time.ZoneId;
 import java.util.*;
 
 @Named("torneoBean")
-@SessionScoped
+@ViewScoped
 public class TorneoBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +42,7 @@ public class TorneoBean implements Serializable {
     private Torneo torneoSeleccionado;
     private List<Partido> proximosPartidos;
     private List<String> nombresEquipos = new ArrayList<>();
+    private List<Equipo> equiposTemporales = new ArrayList<>();
 
 
     private String nombreEquipoTemp;
@@ -49,23 +50,28 @@ public class TorneoBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        cargarTorneosDisponibles();
-        nombresEquipos.add("");
-        /*Al inicio se seleccione un torneo por defecto o el primero:
-          if (torneosDisponibles != null && !torneosDisponibles.isEmpty()) {
-            this.torneoSeleccionado = torneosDisponibles.get(0);
-            cargarProximosPartidos();
-         */
+        try {
+            cargarTorneosDisponibles();
+            equiposTemporales.add(new Equipo());
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
+    /**public void agregarEquipo() {
+     if (nombreEquipoTemp != null && !nombreEquipoTemp.trim().isEmpty()) {
+     nombresEquipos.add(nombreEquipoTemp.trim());
+     nombreEquipoTemp = "";
+     FacesUtil.addSuccessMessage("Equipo agregado", "El equipo fue añadido correctamente.");
+     } else {
+     FacesUtil.addErrorMessage("Error", "Debes ingresar un nombre de equipo válido.");
+     }
+     }*/
+
     public void agregarEquipo() {
-        if (nombreEquipoTemp != null && !nombreEquipoTemp.trim().isEmpty()) {
-            nombresEquipos.add(nombreEquipoTemp.trim());
-            nombreEquipoTemp = "";
-            FacesUtil.addSuccessMessage("Equipo agregado", "El equipo fue añadido correctamente.");
-        } else {
-            FacesUtil.addErrorMessage("Error", "Debes ingresar un nombre de equipo válido.");
-        }
+        equiposTemporales.add(new Equipo());
+        FacesUtil.addSuccessMessage("Equipo agregado", "El equipo fue añadido correctamente.");
     }
 
     public void cargarTorneosDisponibles() {
@@ -81,18 +87,27 @@ public class TorneoBean implements Serializable {
             LocalDate localFechaFin = toLocalDate(fechaFin);
 
             Torneo nuevoTorneo = new Torneo(nombreTorneo, categoria, localFechaInicio, localFechaFin);
-            torneoService.crearTorneo(nuevoTorneo);
 
-            List<Equipo> equipos = nombresEquipos.stream()
-                    .map(nombre -> new Equipo(nombre.trim()))
+            List<Equipo> equipos = equiposTemporales.stream()
+                    .map(et -> {
+                        Equipo equipo = new Equipo(et.getNombre().trim());
+                        equipo.setTorneo(nuevoTorneo); // ← ¡Esto es clave!
+                        return equipo;
+                    })
                     .toList();
+            nuevoTorneo.setEquipos(equipos);
 
             nuevoTorneo.setEquipos(equipos);
+            torneoService.crearTorneo(nuevoTorneo);
 
             FacesUtil.addSuccessMessage("Éxito", "Torneo '" + nombreTorneo + "' creado correctamente.");
             limpiarFormulario();
             cargarTorneosDisponibles();
 
+            System.out.println("Torneo antes de persistir: " + nuevoTorneo);
+            System.out.println("Equipos: " + nuevoTorneo.getEquipos().size());
+
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
             return "home.xhtml?faces-redirect=true";
 
         } catch (Exception e) {
@@ -122,7 +137,7 @@ public class TorneoBean implements Serializable {
             return false;
         }
 
-        if (nombresEquipos == null || nombresEquipos.isEmpty()) {
+        if (equiposTemporales == null || equiposTemporales.isEmpty()) {
             FacesUtil.addErrorMessage("Validación", "Debe agregar al menos un equipo.");
             return false;
         }
@@ -280,5 +295,13 @@ public class TorneoBean implements Serializable {
 
     public void setNombreEquipoTemp(String nombreEquipoTemp) {
         this.nombreEquipoTemp = nombreEquipoTemp;
+    }
+
+    public List<Equipo> getEquiposTemporales() {
+        return equiposTemporales;
+    }
+
+    public void setEquiposTemporales(List<Equipo> equiposTemporales) {
+        this.equiposTemporales = equiposTemporales;
     }
 }

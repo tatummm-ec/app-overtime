@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Equipo") // Or your table name
+@Table(name = "EQUIPO")
 @NamedQueries({
         @NamedQuery(name = "Equipo.findAll", query = "SELECT e FROM Equipo e")
 })
@@ -14,17 +14,20 @@ public class Equipo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre; // Example: "Barcelona SC", "Emelec"
+    private String nombre;
 
-    // --- NEW PROPERTIES FOR TABLE STANDINGS ---
-    private int puntos;         // Stores the points of the team
-    private int golesFavor;     // Goals scored by the team
-    private int golesContra;    // Goals conceded by the team
-    private int partidosJugados; // Number of games played
-    private int partidosGanados; // Number of games won
-    private int partidosEmpatados; // Number of games tied
-    private int partidosPerdidos; // Number of games lost
-    // --- END NEW PROPERTIES ---
+
+    private int puntos;
+    private int golesFavor;
+    private int golesContra;
+    private int partidosJugados;
+    private int partidosGanados;
+    private int partidosEmpatados;
+    private int partidosPerdidos;
+
+    @ManyToOne
+    @JoinColumn(name = "torneo_id")  // debe coincidir con el @JoinColumn de Torneo
+    private Torneo torneo;
 
     public Equipo() {}
 
@@ -102,6 +105,15 @@ public class Equipo implements Serializable {
     public void setPartidosPerdidos(int partidosPerdidos) {
         this.partidosPerdidos = partidosPerdidos;
     }
+
+    public Torneo getTorneo() {
+        return torneo;
+    }
+
+    public void setTorneo(Torneo torneo) {
+        this.torneo = torneo;
+    }
+
     // --- END NEW GETTERS AND SETTERS ---
 
 

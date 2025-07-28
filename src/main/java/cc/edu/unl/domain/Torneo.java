@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Torneo")
+@Table(name = "TORNEO")
 @NamedQueries({
         @NamedQuery(name = "Torneo.findAll", query = "SELECT t FROM Torneo t")
 })

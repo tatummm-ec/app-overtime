@@ -57,7 +57,7 @@ public class AuthenticationBean implements Serializable {
     public String logout() {
         FacesUtil.addSuccessMessageAndKeep("Info", "Sesión cerrada correctamente.");
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "login.xhtml?faces-redirect=true"; // Redirecciona a login
+        return "index.xhtml?faces-redirect=true";
     }
 
 
