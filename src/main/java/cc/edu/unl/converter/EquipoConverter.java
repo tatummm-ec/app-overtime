@@ -35,7 +35,7 @@ public class EquipoConverter implements Converter<Equipo> {
         try {
             Long id = Long.valueOf(value);
             // Busca el equipo completo usando el servicio
-            return equipoService.buscarEquipoPorId(id);
+            return equipoService.obtenerEquipoPorId(id);
         } catch (NumberFormatException e) {
             // Maneja el error si el valor no es un número válido
             FacesContext.getCurrentInstance().addMessage(null,

@@ -1,6 +1,7 @@
 package cc.edu.unl.controller;
 
 import cc.edu.unl.domain.Torneo;
+import cc.edu.unl.domain.User;
 import cc.edu.unl.faces.FacesUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Define el bean administrado con nombre "authBean" y ámbito de sesión
-@Named("authBean")
+@Named
 @SessionScoped
 public class AuthenticationBean implements Serializable {
 
@@ -29,14 +30,14 @@ public class AuthenticationBean implements Serializable {
         // Solo inicializar si la lista está vacía para evitar duplicados
         if (registeredUsers.isEmpty()) {
             // Crear usuario "Admin"
-            User adminUser = new User("Admin", "admin@example.com", "admin", "1234");
+            User adminUser = new User( "admin", "12345678");
+            //adminUser.setTorneo(new ArrayList<>());
             // --> PRUEBA: Simular que el admin tiene torneos
-            adminUser.getTorneos().add(new Torneo(1L, "Copa de Verano 2025"));
-            adminUser.getTorneos().add(new Torneo(2L, "Liga Universitaria"));
+            //adminUser.getTorneos().add(new Torneo("Copa de Verano 2025"));
+            //adminUser.getTorneos().add(new Torneo("Liga Universitaria"));
             registeredUsers.add(adminUser);
-
             // Crear un usuario sin torneos para probar
-            registeredUsers.add(new User("Juan", "juan@example.com", "juan", "123"));
+            registeredUsers.add(new User("juan", "12345678"));
         }
     }
 
@@ -45,7 +46,7 @@ public class AuthenticationBean implements Serializable {
         for (User user : registeredUsers) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 this.currentUser = user;
-                FacesUtil.addSuccessMessageAndKeep("Éxito","¡Bienvenido, " + currentUser.getName() + "!");
+                FacesUtil.addSuccessMessageAndKeep("Éxito","¡Bienvenido, " + currentUser.getUsername() + "!");
                 return "home.xhtml?faces-redirect=true";
             }
         }
@@ -57,7 +58,7 @@ public class AuthenticationBean implements Serializable {
     public String logout() {
         FacesUtil.addSuccessMessageAndKeep("Info", "Sesión cerrada correctamente.");
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "index.xhtml?faces-redirect=true";
+        return "login.xhtml?faces-redirect=true"; // Redirecciona a login
     }
 
 
@@ -93,41 +94,5 @@ public class AuthenticationBean implements Serializable {
 
 
     // Clase interna estática que representa un usuario
-    public static class User implements Serializable {
-        private String name;
-        private String email;
-        private String username;
-        private String password;
-        private List<Torneo> torneos = new ArrayList<>();
-
-        // Constructor
-        public User(String name, String email, String username, String password) {
-            this.name = name;
-            this.email = email;
-            this.username = username;
-            this.password = password;
-        }
-
-        // Getters
-        public String getName() { return name; }
-        public String getEmail() { return email; }
-        public String getUsername() { return username; }
-        public String getPassword() { return password; }
-        public List<Torneo> getTorneos() {return torneos; }
-    }
-
-    public static class Torneo implements Serializable {
-        private Long id;
-        private String nombre;
-
-        public Torneo(Long id, String nombre) {
-            this.id = id;
-            this.nombre = nombre;
-        }
-
-        // Getters...
-        public Long getId() { return id; }
-        public String getNombre() { return nombre; }
-    }
 
 }

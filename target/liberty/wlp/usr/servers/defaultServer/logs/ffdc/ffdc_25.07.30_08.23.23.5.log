@@ -1,0 +1,956 @@
+------Start of DE processing------ = [30/07/25, 08:23:23:701 COT]
+Exception = com.ibm.wsspi.injectionengine.InjectionException
+Source = com.ibm.ejs.container.ManagedBeanOBase.injectInstance
+probeid = 157
+Stack Dump = com.ibm.wsspi.injectionengine.InjectionException: CWNEN0030E: La fábrica java:comp/env/cc.edu.unl.business.TorneoService/em ha encontrado un problema al obtener el objeto de enlace jakarta.persistence.PersistenceException: Excepción [EclipseLink-4002] (Eclipse Persistence Services - 4.0.2.v202306161219): org.eclipse.persistence.exceptions.DatabaseException
+Excepción interna: java.sql.SQLNonTransientException: Public Key Retrieval is not allowed DSRA0010E: Estado SQL = 08001, Código de error = 0
+Código de error: 0 de la instancia del objeto. El mensaje de la excepción es: {2}
+	at com.ibm.wsspi.injectionengine.InjectionBinding.getInjectionObject(InjectionBinding.java:1462)
+	at com.ibm.wsspi.injectionengine.InjectionBinding.getInjectableObject(InjectionBinding.java:1376)
+	at com.ibm.wsspi.injectionengine.InjectionTarget.inject(InjectionTarget.java:106)
+	at com.ibm.ws.cdi.impl.managedobject.CDIManagedObject.inject(CDIManagedObject.java:184)
+	at com.ibm.ejs.container.ManagedBeanOBase.injectInstance(ManagedBeanOBase.java:144)
+	at com.ibm.ejs.container.StatelessBeanO.injectInstance(StatelessBeanO.java:277)
+	at com.ibm.ejs.container.StatelessBeanO.initialize(StatelessBeanO.java:161)
+	at com.ibm.ejs.container.BeanOFactory.create(BeanOFactory.java:105)
+	at com.ibm.ejs.container.EJSHome.createBeanO(EJSHome.java:932)
+	at com.ibm.ejs.container.EJSHome.createBeanO(EJSHome.java:1029)
+	at com.ibm.ejs.container.activator.UncachedActivationStrategy.atActivate(UncachedActivationStrategy.java:64)
+	at com.ibm.ejs.container.activator.Activator.preInvokeActivateBean(Activator.java:265)
+	at com.ibm.ejs.container.EJSContainer.preInvokeActivate(EJSContainer.java:3003)
+	at com.ibm.ejs.container.EJSContainer.EjbPreInvoke(EJSContainer.java:2392)
+	at cc.edu.unl.business.EJSLocalNSLTorneoService_18b58ef8.guardarTorneo(EJSLocalNSLTorneoService_18b58ef8.java)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.jboss.weld.util.reflection.Reflections.invokeAndUnwrap(Reflections.java:410)
+	at org.jboss.weld.module.ejb.EnterpriseBeanProxyMethodHandler.invoke(EnterpriseBeanProxyMethodHandler.java:133)
+	at org.jboss.weld.bean.proxy.EnterpriseTargetBeanInstance.invoke(EnterpriseTargetBeanInstance.java:56)
+	at org.jboss.weld.module.ejb.InjectionPointPropagatingEnterpriseTargetBeanInstance.invoke(InjectionPointPropagatingEnterpriseTargetBeanInstance.java:68)
+	at org.jboss.weld.bean.proxy.ProxyMethodHandler.invoke(ProxyMethodHandler.java:106)
+	at cc.edu.unl.business.TorneoService$Proxy$_$$_Weld$EnterpriseProxy$.guardarTorneo(Unknown Source)
+	at cc.edu.unl.controller.TorneoBean.crearTorneo(TorneoBean.java:44)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.el.parser.AstValue.invoke(AstValue.java:253)
+	at org.apache.el.MethodExpressionImpl.invoke(MethodExpressionImpl.java:267)
+	at org.apache.myfaces.view.facelets.el.ContextAwareTagMethodExpression.invoke(ContextAwareTagMethodExpression.java:96)
+	at org.apache.myfaces.application.ActionListenerImpl.processAction(ActionListenerImpl.java:67)
+	at jakarta.faces.component.UICommand.broadcast(UICommand.java:65)
+	at jakarta.faces.component.UIViewRoot._broadcastAll(UIViewRoot.java:1233)
+	at jakarta.faces.component.UIViewRoot.broadcastEvents(UIViewRoot.java:414)
+	at jakarta.faces.component.UIViewRoot._process(UIViewRoot.java:1705)
+	at jakarta.faces.component.UIViewRoot.processApplication(UIViewRoot.java:915)
+	at org.apache.myfaces.lifecycle.InvokeApplicationExecutor.execute(InvokeApplicationExecutor.java:43)
+	at org.apache.myfaces.lifecycle.LifecycleImpl.executePhase(LifecycleImpl.java:172)
+	at org.apache.myfaces.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:125)
+	at jakarta.faces.webapp.FacesServlet.service(FacesServlet.java:223)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.service(ServletWrapper.java:1260)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:748)
+	at com.ibm.ws.webcontainer.servlet.ServletWrapper.handleRequest(ServletWrapper.java:445)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.invokeTarget(WebAppFilterChain.java:197)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:100)
+	at com.ibm.ws.security.jaspi.JaspiServletFilter.doFilter(JaspiServletFilter.java:58)
+	at com.ibm.ws.webcontainer.filter.FilterInstanceWrapper.doFilter(FilterInstanceWrapper.java:203)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter(WebAppFilterChain.java:93)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterManager.doFilter(WebAppFilterManager.java:1068)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterManager.invokeFilters(WebAppFilterManager.java:1259)
+	at com.ibm.ws.webcontainer.filter.WebAppFilterManager.invokeFilters(WebAppFilterManager.java:1077)
+	at com.ibm.ws.webcontainer.servlet.CacheServletWrapper.handleRequest(CacheServletWrapper.java:77)
+	at com.ibm.ws.webcontainer40.servlet.CacheServletWrapper40.handleRequest(CacheServletWrapper40.java:87)
+	at com.ibm.ws.webcontainer.WebContainer.handleRequest(WebContainer.java:969)
+	at com.ibm.ws.webcontainer.osgi.DynamicVirtualHost$2.run(DynamicVirtualHost.java:283)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink$TaskWrapper.run(HttpDispatcherLink.java:1248)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink.wrapHandlerAndExecute(HttpDispatcherLink.java:470)
+	at com.ibm.ws.http.dispatcher.internal.channel.HttpDispatcherLink.ready(HttpDispatcherLink.java:429)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.handleDiscrimination(HttpInboundLink.java:569)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.handleNewRequest(HttpInboundLink.java:503)
+	at com.ibm.ws.http.channel.internal.inbound.HttpInboundLink.processRequest(HttpInboundLink.java:363)
+	at com.ibm.ws.http.channel.internal.inbound.HttpICLReadCallback.complete(HttpICLReadCallback.java:72)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.requestComplete(WorkQueueManager.java:516)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.attemptIO(WorkQueueManager.java:586)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager.workerRun(WorkQueueManager.java:970)
+	at com.ibm.ws.tcpchannel.internal.WorkQueueManager$Worker.run(WorkQueueManager.java:1059)
+	at com.ibm.ws.threading.internal.ExecutorServiceImpl$RunnableWrapper.run(ExecutorServiceImpl.java:247)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.RuntimeException: jakarta.persistence.PersistenceException: Excepción [EclipseLink-4002] (Eclipse Persistence Services - 4.0.2.v202306161219): org.eclipse.persistence.exceptions.DatabaseException
+Excepción interna: java.sql.SQLNonTransientException: Public Key Retrieval is not allowed DSRA0010E: Estado SQL = 08001, Código de error = 0
+Código de error: 0
+	at com.ibm.ws.jpa.management.JPAPUnitInfo.getEntityManagerFactory(JPAPUnitInfo.java:814)
+	at com.ibm.ws.jpa.management.JPAPUnitInfo.getEntityManagerPool(JPAPUnitInfo.java:1023)
+	at com.ibm.ws.jpa.management.JPATxEntityManager.<init>(JPATxEntityManager.java:149)
+	at com.ibm.ws.jpa.container.v31.JPATxEntityManagerV31.<init>(JPATxEntityManagerV31.java:47)
+	at com.ibm.ws.jpa.container.v31.internal.JPA31Runtime.createJPATxEntityManager(JPA31Runtime.java:73)
+	at com.ibm.ws.jpa.management.AbstractJPAComponent.getEntityManager(AbstractJPAComponent.java:278)
+	at com.ibm.ws.jpa.container.osgi.jndi.JPAJndiLookupObjectFactory.getObjectInstance(JPAJndiLookupObjectFactory.java:151)
+	at com.ibm.wsspi.injectionengine.InjectionBinding.getInjectionObjectInstance(InjectionBinding.java:1560)
+	at com.ibm.wsspi.injectionengine.InjectionBinding.getInjectionObject(InjectionBinding.java:1436)
+	... 68 more
+Caused by: jakarta.persistence.PersistenceException: Excepción [EclipseLink-4002] (Eclipse Persistence Services - 4.0.2.v202306161219): org.eclipse.persistence.exceptions.DatabaseException
+Excepción interna: java.sql.SQLNonTransientException: Public Key Retrieval is not allowed DSRA0010E: Estado SQL = 08001, Código de error = 0
+Código de error: 0
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:856)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:221)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:199)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.getDatabaseSession(EntityManagerFactoryImpl.java:534)
+	at org.eclipse.persistence.jpa.PersistenceProvider.createContainerEntityManagerFactoryImpl(PersistenceProvider.java:385)
+	at org.eclipse.persistence.jpa.PersistenceProvider.createContainerEntityManagerFactory(PersistenceProvider.java:313)
+	at com.ibm.ws.jpa.management.JPAPUnitInfo.createEMFactory(JPAPUnitInfo.java:936)
+	at com.ibm.ws.jpa.management.JPAPUnitInfo.initialize(JPAPUnitInfo.java:772)
+	at com.ibm.ws.jpa.management.JPAPxmlInfo.extractPersistenceUnits(JPAPxmlInfo.java:184)
+	at com.ibm.ws.jpa.management.JPAScopeInfo.processPersistenceUnit(JPAScopeInfo.java:90)
+	at com.ibm.ws.jpa.management.JPAApplInfo.addPersistenceUnits(JPAApplInfo.java:121)
+	at com.ibm.ws.jpa.container.osgi.internal.JPAComponentImpl.processWebModulePersistenceXml(JPAComponentImpl.java:595)
+	at com.ibm.ws.jpa.container.osgi.internal.JPAComponentImpl.applicationStarting(JPAComponentImpl.java:378)
+	at com.ibm.ws.container.service.state.internal.ApplicationStateManager.fireStarting(ApplicationStateManager.java:53)
+	at com.ibm.ws.container.service.state.internal.StateChangeServiceImpl.fireApplicationStarting(StateChangeServiceImpl.java:52)
+	at com.ibm.ws.app.manager.module.internal.SimpleDeployedAppInfoBase.preDeployApp(SimpleDeployedAppInfoBase.java:549)
+	at com.ibm.ws.app.manager.module.internal.SimpleDeployedAppInfoBase.installApp(SimpleDeployedAppInfoBase.java:510)
+	at com.ibm.ws.app.manager.module.internal.DeployedAppInfoBase.deployApp(DeployedAppInfoBase.java:351)
+	at com.ibm.ws.app.manager.war.internal.WARApplicationHandlerImpl.install(WARApplicationHandlerImpl.java:67)
+	at com.ibm.ws.app.manager.internal.statemachine.StartAction.execute(StartAction.java:184)
+	at com.ibm.ws.app.manager.internal.statemachine.ApplicationStateMachineImpl.enterState(ApplicationStateMachineImpl.java:1369)
+	at com.ibm.ws.app.manager.internal.statemachine.ApplicationStateMachineImpl.performAction(ApplicationStateMachineImpl.java:1233)
+	at com.ibm.ws.app.manager.internal.statemachine.ApplicationStateMachineImpl.run(ApplicationStateMachineImpl.java:920)
+	... 4 more
+Caused by: Excepción [EclipseLink-4002] (Eclipse Persistence Services - 4.0.2.v202306161219): org.eclipse.persistence.exceptions.DatabaseException
+Excepción interna: java.sql.SQLNonTransientException: Public Key Retrieval is not allowed DSRA0010E: Estado SQL = 08001, Código de error = 0
+Código de error: 0
+	at org.eclipse.persistence.exceptions.DatabaseException.sqlException(DatabaseException.java:319)
+	at org.eclipse.persistence.sessions.JNDIConnector.connect(JNDIConnector.java:152)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:174)
+	at org.eclipse.persistence.internal.databaseaccess.DatasourceAccessor.connectInternal(DatasourceAccessor.java:359)
+	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.connectInternal(DatabaseAccessor.java:318)
+	at org.eclipse.persistence.internal.databaseaccess.DatasourceAccessor.connect(DatasourceAccessor.java:451)
+	at org.eclipse.persistence.sessions.server.ConnectionPool.buildConnection(ConnectionPool.java:219)
+	at org.eclipse.persistence.sessions.server.ExternalConnectionPool.startUp(ExternalConnectionPool.java:154)
+	at org.eclipse.persistence.sessions.server.ServerSession.connect(ServerSession.java:530)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.login(DatabaseSessionImpl.java:824)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:261)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:771)
+	... 26 more
+Caused by: java.sql.SQLNonTransientException: Public Key Retrieval is not allowed DSRA0010E: Estado SQL = 08001, Código de error = 0
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:833)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
+	at com.mysql.cj.jdbc.MysqlDataSource.getConnection(MysqlDataSource.java:408)
+	at com.mysql.cj.jdbc.MysqlDataSource.getConnection(MysqlDataSource.java:120)
+	at com.mysql.cj.jdbc.MysqlConnectionPoolDataSource.getPooledConnection(MysqlConnectionPoolDataSource.java:58)
+	at com.ibm.ws.rsadapter.impl.DatabaseHelper$1.run(DatabaseHelper.java:1518)
+	at com.ibm.ws.rsadapter.impl.DatabaseHelper$1.run(DatabaseHelper.java:1502)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.base/java.security.AccessController.doPrivilegedWithCombiner(AccessController.java:618)
+	at com.ibm.ws.rsadapter.impl.DatabaseHelper.getPooledConnection(DatabaseHelper.java:1502)
+	at com.ibm.ws.rsadapter.impl.WSManagedConnectionFactoryImpl.getConnection(WSManagedConnectionFactoryImpl.java:857)
+	at com.ibm.ws.rsadapter.impl.WSManagedConnectionFactoryImpl.createManagedConnection(WSManagedConnectionFactoryImpl.java:698)
+	at com.ibm.ejs.j2c.FreePool.createManagedConnectionWithMCWrapper(FreePool.java:1376)
+	at com.ibm.ejs.j2c.FreePool.createOrWaitForConnection(FreePool.java:1250)
+	at com.ibm.ejs.j2c.PoolManager.reserve(PoolManager.java:1471)
+	at com.ibm.ejs.j2c.ConnectionManager.allocateMCWrapper(ConnectionManager.java:576)
+	at com.ibm.ejs.j2c.ConnectionManager.allocateConnection(ConnectionManager.java:308)
+	at com.ibm.ws.rsadapter.jdbc.WSJdbcDataSource.getConnection(WSJdbcDataSource.java:142)
+	at com.ibm.ws.rsadapter.jdbc.WSJdbcDataSource.getConnection(WSJdbcDataSource.java:244)
+	at org.eclipse.persistence.sessions.JNDIConnector.connect(JNDIConnector.java:149)
+	... 36 more
+Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:76)
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:122)
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:40)
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:436)
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:206)
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1333)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:155)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:957)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:821)
+	... 57 more
+
+Dump of callerThis
+Object type = com.ibm.ejs.container.CMStatelessBeanO
+  serialVersionUID = 6553421454354990950
+  tc = class com.ibm.websphere.ras.TraceComponent@e24d76e
+    strings[0] = "TraceComponent[com.ibm.ejs.container.CMStatelessBeanO,class com.ibm.ejs.container.CMStatelessBeanO,[EJBContainer],com.ibm.ejs.container.container,null]"
+  CLASS_NAME = "com.ibm.ejs.container.StatelessBeanO"
+  tc = class com.ibm.websphere.ras.TraceComponent@3b67bb5a
+    strings[0] = "TraceComponent[com.ibm.ejs.container.StatelessBeanO,class com.ibm.ejs.container.StatelessBeanO,[EJBContainer],com.ibm.ejs.container.container,null]"
+  reentrant = false
+  allowRollbackOnly = false
+  discarded = false
+  ivNumberOfBeansLimited = false
+  POOLED = 3
+  IN_METHOD = 4
+  StateStrs = class java.lang.String[5]
+    String[0] = "DESTROYED"
+    String[1] = "PRE_CREATE"
+    String[2] = "CREATING"
+    String[3] = "POOLED"
+    String[4] = "IN_METHOD"
+  tc = class com.ibm.websphere.ras.TraceComponent@23f50fdb
+    strings[0] = "TraceComponent[com.ibm.ejs.container.SessionBeanO,class com.ibm.ejs.container.SessionBeanO,[EJBContainer],com.ibm.ejs.container.container,null]"
+  CLASS_NAME = "com.ibm.ejs.container.SessionBeanO"
+  DESTROYED = 0
+  PRE_CREATE = 1
+  CREATING = 2
+  messageContextMethod = null
+  sessionBean = null
+  currentIsolationLevel = 0
+  ivCallbackKind = class com.ibm.ws.ejbcontainer.CallbackKind@20ddfedb
+    None = class com.ibm.ws.ejbcontainer.CallbackKind@54b77e4f
+      None = class com.ibm.ws.ejbcontainer.CallbackKind@54b77e4f
+      SessionBean = class com.ibm.ws.ejbcontainer.CallbackKind@52e1fe0b
+      MessageDrivenBean = class com.ibm.ws.ejbcontainer.CallbackKind@7e069e8f
+      InvocationContext = class com.ibm.ws.ejbcontainer.CallbackKind@20ddfedb
+      $VALUES = class com.ibm.ws.ejbcontainer.CallbackKind[4]
+      name = "/* Could not access name */"
+      ordinal = "/* Could not access ordinal */"
+      hash = "/* Could not access hash */"
+    SessionBean = class com.ibm.ws.ejbcontainer.CallbackKind@52e1fe0b
+      None = class com.ibm.ws.ejbcontainer.CallbackKind@54b77e4f
+      SessionBean = class com.ibm.ws.ejbcontainer.CallbackKind@52e1fe0b
+      MessageDrivenBean = class com.ibm.ws.ejbcontainer.CallbackKind@7e069e8f
+      InvocationContext = class com.ibm.ws.ejbcontainer.CallbackKind@20ddfedb
+      $VALUES = class com.ibm.ws.ejbcontainer.CallbackKind[4]
+      name = "/* Could not access name */"
+      ordinal = "/* Could not access ordinal */"
+      hash = "/* Could not access hash */"
+    MessageDrivenBean = class com.ibm.ws.ejbcontainer.CallbackKind@7e069e8f
+      None = class com.ibm.ws.ejbcontainer.CallbackKind@54b77e4f
+      SessionBean = class com.ibm.ws.ejbcontainer.CallbackKind@52e1fe0b
+      MessageDrivenBean = class com.ibm.ws.ejbcontainer.CallbackKind@7e069e8f
+      InvocationContext = class com.ibm.ws.ejbcontainer.CallbackKind@20ddfedb
+      $VALUES = class com.ibm.ws.ejbcontainer.CallbackKind[4]
+      name = "/* Could not access name */"
+      ordinal = "/* Could not access ordinal */"
+      hash = "/* Could not access hash */"
+    InvocationContext = class com.ibm.ws.ejbcontainer.CallbackKind@20ddfedb
+    $VALUES = class com.ibm.ws.ejbcontainer.CallbackKind[4]
+      CallbackKind[0] = class com.ibm.ws.ejbcontainer.CallbackKind@54b77e4f
+      CallbackKind[1] = class com.ibm.ws.ejbcontainer.CallbackKind@52e1fe0b
+      CallbackKind[2] = class com.ibm.ws.ejbcontainer.CallbackKind@7e069e8f
+      CallbackKind[3] = class com.ibm.ws.ejbcontainer.CallbackKind@20ddfedb
+    name = "/* Could not access name */"
+    ordinal = "/* Could not access ordinal */"
+    hash = "/* Could not access hash */"
+  CLASS_NAME = "com.ibm.ejs.container.ManagedBeanOBase"
+  tc = class com.ibm.websphere.ras.TraceComponent@4478cff7
+    strings[0] = "TraceComponent[com.ibm.ejs.container.ManagedBeanOBase,class com.ibm.ejs.container.ManagedBeanOBase,[EJBContainer],com.ibm.ejs.container.container,null]"
+  ivEjbInstance = class cc.edu.unl.business.TorneoService@5fb02d11
+    logger = class java.util.logging.Logger@21557b25
+      emptyHandlers = "/* Could not access emptyHandlers */"
+      offValue = "/* Could not access offValue */"
+      SYSTEM_LOGGER_RB_NAME = "/* Could not access SYSTEM_LOGGER_RB_NAME */"
+      SYSTEM_BUNDLE = "/* Could not access SYSTEM_BUNDLE */"
+      NO_RESOURCE_BUNDLE = "/* Could not access NO_RESOURCE_BUNDLE */"
+      config = "/* Could not access config */"
+      manager = "/* Could not access manager */"
+      name = "/* Could not access name */"
+      loggerBundle = "/* Could not access loggerBundle */"
+      anonymous = "/* Could not access anonymous */"
+      catalogRef = "/* Could not access catalogRef */"
+      catalogName = "/* Could not access catalogName */"
+      catalogLocale = "/* Could not access catalogLocale */"
+      treeLock = "/* Could not access treeLock */"
+      parent = "/* Could not access parent */"
+      kids = "/* Could not access kids */"
+      callerModuleRef = "/* Could not access callerModuleRef */"
+      isSystemLogger = "/* Could not access isSystemLogger */"
+      GLOBAL_LOGGER_NAME = "global"
+      global = class java.util.logging.Logger@4531da9f
+    em = null
+  ivEjbManagedObjectContext = class com.ibm.ws.cdi.impl.managedobject.CDIManagedObjectState@6482c1e7
+    serialVersionUID = 1
+    _cc = class org.jboss.weld.contexts.CreationalContextImpl@31dc1025
+      serialVersionUID = 7375854583908262422
+      SERIALIZATION_PROXY = class org.jboss.weld.contexts.CreationalContextImpl$SerializationProxy@3d25b4a1
+      incompleteInstances = null
+      contextual = class org.jboss.weld.module.ejb.SessionBeanImpl@76522682
+      dependentInstances = class java.util.Collections$SynchronizedRandomAccessList@ea73f00
+      parentDependentInstances = class java.util.Collections$SynchronizedRandomAccessList@4d37475c
+      parentCreationalContext = null
+      destroyed = null
+      resourceReferences = null
+      constructorInterceptionSuppressed = true
+      aroundConstructCallbacks = class java.util.LinkedList@3aa639f7
+      aroundConstructInterceptionContext = null
+    $$$tc$$$ = class com.ibm.websphere.ras.TraceComponent@2860603a
+      strings[0] = "TraceComponent[com.ibm.ws.cdi.impl.managedobject.CDIManagedObjectState,class com.ibm.ws.cdi.impl.managedobject.CDIManagedObjectState,[JCDI],com.ibm.ws.cdi.internal.resources.CDI,null]"
+  ivManagedObject = class com.ibm.ws.cdi.impl.managedobject.CDIManagedObject@318a4384
+    tc = class com.ibm.websphere.ras.TraceComponent@75ea2b0c
+      strings[0] = "TraceComponent[com.ibm.ws.cdi.impl.managedobject.CDIManagedObject,class com.ibm.ws.cdi.impl.managedobject.CDIManagedObject,[JCDI],com.ibm.ws.cdi.internal.resources.CDI,null]"
+    managedObject = class cc.edu.unl.business.TorneoService@5fb02d11
+    creationalContext = class org.jboss.weld.contexts.CreationalContextImpl@31dc1025
+    injectionTarget = class org.jboss.weld.module.ejb.SessionBeanInjectionTarget@6bb8c495
+      bean = class org.jboss.weld.module.ejb.SessionBeanImpl@76522682
+      bean = class org.jboss.weld.module.ejb.SessionBeanImpl@76522682
+      beanManager = class org.jboss.weld.manager.BeanManagerImpl@3bdad968
+      type = class org.jboss.weld.annotated.slim.backed.BackedAnnotatedType@3ab4acff
+      injectionPoints = class java.util.Collections$EmptySet@1c3de26d
+      instantiator = class org.jboss.weld.injection.producer.DefaultInstantiator@2a6c6e10
+      injector = class org.jboss.weld.module.ejb.DynamicInjectionPointInjector@70f419ae
+      invoker = class org.jboss.weld.injection.producer.DefaultLifecycleCallbackInvoker@e28be56
+    lifecycleManaged = true
+    beanScope = "jakarta.enterprise.context.Dependent"
+    identity = "cc.edu.unl.business.TorneoService@5fb02d11"
+    websphereInjectionServices = class com.ibm.ws.cdi.impl.weld.injection.WebSphereInjectionServicesImpl@2b599c4c
+      tc = class com.ibm.websphere.ras.TraceComponent@790b4bf7
+      ANNOTATIONS_KNOWN_TO_WELD = class java.util.HashSet@336c1174
+      referenceContextMap = class java.util.concurrent.ConcurrentHashMap@1c278a9d
+      referenceContexts = class java.util.Collections$SetFromMap@4f022aaa
+      injectionTargetListeners = class java.util.concurrent.ConcurrentHashMap@28de64fa
+      deployment = class com.ibm.ws.cdi.impl.weld.WebSphereCDIDeploymentImpl@7bea3724
+      serialVersionUID = 2515575801175940133
+    currentInjectionTargets = null
+    currentInjectionContext = null
+    serialVersionUID = 642874158156701263
+  ivInterceptors = class java.lang.Object[2]
+    Object[0] = class com.ibm.ws.cdi.ejb.interceptor.WeldSessionBeanInterceptorWrapper@381df36a
+      serialVersionUID = -4630548195644884051
+      tc = class com.ibm.websphere.ras.TraceComponent@27e37f87
+      beanManagerImpl = null
+      ejbContext = class com.ibm.ejs.container.CMStatelessBeanO@15ec2a23
+      serialVersionUID = 7327757031821596782
+      requestInitializedEvent = class org.jboss.weld.module.ejb.AbstractEJBRequestScopeActivationInterceptor$1@425a1bcd
+      requestBeforeDestroyedEvent = class org.jboss.weld.module.ejb.AbstractEJBRequestScopeActivationInterceptor$2@6835d1a5
+      requestDestroyedEvent = class org.jboss.weld.module.ejb.AbstractEJBRequestScopeActivationInterceptor$3@4dc7989d
+    Object[1] = class com.ibm.ws.cdi.ejb.impl.EJBCDIInterceptorWrapper@2454fa45
+      tc = class com.ibm.websphere.ras.TraceComponent@6251daba
+      beanManager = class org.jboss.weld.bean.builtin.BeanManagerProxy@5a95cb7
+      activeInterceptors = class java.util.concurrent.ConcurrentHashMap@2aee9a91
+      serialVersionUID = -5367087917382782149
+  CLASS_NAME = "com.ibm.ejs.container.BeanO"
+  tc = class com.ibm.websphere.ras.TraceComponent@54dc3545
+    strings[0] = "TraceComponent[com.ibm.ejs.container.BeanO,class com.ibm.ejs.container.BeanO,[EJBContainer],com.ibm.ejs.container.container,null]"
+  isZOS = false
+  state = 1
+  container = class com.ibm.ejs.container.EJSContainer@2ee1c962
+  home = class com.ibm.ejs.container.SessionHome@64f376ba
+    serialVersionUID = -5599958674558718699
+    tc = class com.ibm.websphere.ras.TraceComponent@34d9c5f0
+      strings[0] = "TraceComponent[com.ibm.ejs.container.EJSHome,class com.ibm.ejs.container.EJSHome,[EJBContainer],com.ibm.ejs.container.container,null]"
+    CLASS_NAME = "com.ibm.ejs.container.EJSHome"
+    ivCMDAccessor = class com.ibm.ws.threadContext.ComponentMetaDataAccessorImpl@36e1618e
+      tc = class com.ibm.websphere.ras.TraceComponent@d899472
+      cmdai = class com.ibm.ws.threadContext.ComponentMetaDataAccessorImpl@36e1618e
+      threadContext = class com.ibm.ws.threadContext.ThreadContextImpl@37eb6391
+      defaultCMD = null
+    beanOFactory = class com.ibm.ejs.container.CMStatelessBeanOFactory@6efe8a1b
+      tc = class com.ibm.websphere.ras.TraceComponent@23f11b10
+    container = class com.ibm.ejs.container.EJSContainer@2ee1c962
+    ivEntityHelper = null
+    noLocalCopies = false
+    allowPrimaryKeyMutation = false
+    noPrimaryKeyMutation = false
+    jndiName = null
+    j2eeName = class com.ibm.ws.container.service.metadata.internal.J2EENameImpl@54870596
+      serialVersionUID = 7488184044073147667
+      application = "app-overtime"
+      module = "app-overtime.war"
+      component = "TorneoService"
+      string = "app-overtime#app-overtime.war#TorneoService"
+      j2eeNameBytes = {97,112,112,45,111,118,101,114,116,105,109,101,35,97,112,112,45,111,118,101,114,116,105,109,101,46,119,97,114,35,84,111,114,110,101,111,83,101,114,118,105,99,101} /* array length = 43 */
+      $$$tc$$$ = class com.ibm.websphere.ras.TraceComponent@5391e14d
+    statelessSessionHome = true
+    statefulSessionHome = false
+    messageDrivenHome = false
+    ivSingletonSessionHome = false
+    hashValue = -1711595602
+    ivHomeId = class com.ibm.ejs.container.BeanId@69d7f399
+      tc = class com.ibm.websphere.ras.TraceComponent@19a2d67
+      CLASS_NAME = "com.ibm.ejs.container.BeanId"
+      _isHome = true
+      pkey = class com.ibm.ws.container.service.metadata.internal.J2EENameImpl@54870596
+      j2eeName = class com.ibm.ws.container.service.metadata.internal.J2EENameImpl@7fb8cef8
+      byteArray = null
+      home = class com.ibm.ejs.container.HomeOfHomes@429bd1fc
+      activationStrategy = null
+      hashValue = -1173382333
+      ivFailoverKey = null
+      HOME_BEAN = 0
+      STATELESS_BEAN = 1
+      STATEFUL_BEAN = 2
+      ENTITY_BEAN = 3
+      MESSAGEDRIVEN_BEAN = 4
+      SINGLETON_BEAN = 5
+      USES_BEAN_MANAGED_TX = 16
+      MODULE_VERSION_CAPABLE = 32
+      TYPE_TO_TYPE_ID_MAP = {0,0,5,1,2,3,3,4} /* array length = 8 */
+      SERIALIZED_PKEY = 0
+      INTEGER_PKEY = 1
+      STRING_PKEY = 3
+      LONG_PKEY = 4
+      BYTE_ARRAY_PKEY = 8
+      BEAN_TYPE_LEN = 1
+      J2EE_NAME_LEN = 4
+      PKEY_TYPE_LEN = 1
+      header = {-84,-84,0,2,0,1} /* array length = 6 */
+      HEADER_LEN = 6
+      svBAOSs = class java.io.ByteArrayOutputStream[50]
+      svBAOSsSize = 1
+    ivHomeWrappers = null
+    ivStatelessId = class com.ibm.ejs.container.BeanId@b04e9f9
+    ivStatelessWrappers = class com.ibm.ejs.container.EJSWrapperCommon@736312ea
+      tc = class com.ibm.websphere.ras.TraceComponent@20d7f4a
+      CLASS_NAME = "com.ibm.ejs.container.EJSWrapperCommon"
+      isZOS = false
+      remoteWrapper = null
+      ivRemoteObjectWrapper = null
+      localWrapper = null
+      localObject = null
+      localWrapperProxyState = null
+      ivBusinessLocal = class java.lang.Object[1]
+      ivBusinessLocalProxies = class java.lang.Object[1]
+      ivBusinessLocalWrapperProxyStates = null
+      ivBusinessRemote = null
+      ivBusinessRemoteRegistered = null
+      isRemoteRegistered = false
+      ivCachedBeanO = null
+      ivBeanId = class com.ibm.ejs.container.BeanId@b04e9f9
+      ivBMD = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.OSGiBeanMetaData@25e201d4
+      svThreadContextAccessor = class com.ibm.ws.util.ThreadContextAccessor$ReflectionThreadContextAccessorImpl@5ba444cb
+      svLocalBeanWrapperBaseFieldClassValue = class com.ibm.ws.ejbcontainer.util.FieldClassValueFactory$Impl$FieldClassValueImpl@72685add
+      svLocalBeanWrapperProxyStateFieldClassValue = class com.ibm.ws.ejbcontainer.util.FieldClassValueFactory$Impl$FieldClassValueImpl@40375f37
+      ivBucket = class com.ibm.ejs.util.cache.WrapperBucket@7ab250a1
+      key = class com.ibm.ejs.container.util.ByteArray@5ed29f70
+      object = class com.ibm.ejs.container.EJSWrapperCommon@736312ea
+      pinned = 0
+      accessedSweep = 4
+      ivEvictionIneligible = false
+    ivStatefulBusinessHomeWrapper = null
+    enterpriseBeanClass = class java.lang.Class@74493d8c
+      ANNOTATION = "/* Could not access ANNOTATION */"
+      ENUM = "/* Could not access ENUM */"
+      SYNTHETIC = "/* Could not access SYNTHETIC */"
+      cachedConstructor = "/* Could not access cachedConstructor */"
+      name = "/* Could not access name */"
+      module = "/* Could not access module */"
+      packageName = "/* Could not access packageName */"
+      componentType = "/* Could not access componentType */"
+      allPermDomain = "/* Could not access allPermDomain */"
+      reflectionData = "/* Could not access reflectionData */"
+      classRedefinedCount = "/* Could not access classRedefinedCount */"
+      genericInfo = "/* Could not access genericInfo */"
+      EMPTY_CLASS_ARRAY = "/* Could not access EMPTY_CLASS_ARRAY */"
+      serialVersionUID = "/* Could not access serialVersionUID */"
+      serialPersistentFields = "/* Could not access serialPersistentFields */"
+      reflectionFactory = "/* Could not access reflectionFactory */"
+      enumConstants = "/* Could not access enumConstants */"
+      enumConstantDirectory = "/* Could not access enumConstantDirectory */"
+      annotationData = "/* Could not access annotationData */"
+      annotationType = "/* Could not access annotationType */"
+      classValueMap = "/* Could not access classValueMap */"
+    remoteEJBObjectClass = null
+    localEJBObjectClass = null
+    beanMetaData = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.OSGiBeanMetaData@25e201d4
+      tc = class com.ibm.websphere.ras.TraceComponent@1247ac79
+      beanRuntime = class com.ibm.ws.ejbcontainer.session.internal.SessionBeanRuntimeImpl@ba3be00
+      systemHomeBindingName = null
+      mbeanServiceReg = null
+      serialVersionUID = 4571786972187397809
+      tc = class com.ibm.websphere.ras.TraceComponent@490f0703
+      svTimedObjectClass = class java.lang.Class@bebae88
+      svTimedObjectMethod = class java.lang.reflect.Method@670aedec
+      ACCESS_INTENT_READ = 0
+      ACCESS_INTENT_UPDATE = 1
+      ACTIVATION_POLICY_ONCE = 0
+      ACTIVATION_POLICY_ACTIVITY_SESSION = 1
+      ACTIVATION_POLICY_TRANSACTION = 2
+      CONCURRENCY_CONTROL_PESSIMISTIC = 0
+      CONCURRENCY_CONTROL_OPTIMISTIC = 1
+      J2EE_EJB_VERSION_UNKNOWN = 0
+      J2EE_EJB_VERSION_1_0 = 10
+      J2EE_EJB_VERSION_1_1 = 11
+      J2EE_EJB_VERSION_2_0 = 20
+      J2EE_EJB_VERSION_2_1 = 21
+      J2EE_EJB_VERSION_3_0 = 30
+      J2EE_EJB_VERSION_3_1 = 31
+      J2EE_EJB_VERSION_3_2 = 32
+      JAVAEE_VERSION_5 = 50
+      LOAD_POLICY_ACTIVATION = 0
+      LOAD_POLICY_TRANSACTION = 1
+      LOAD_POLICY_INTERVAL = 2
+      LOAD_POLICY_DAILY = 3
+      LOAD_POLICY_WEEKLY = 4
+      LOCAL_TX_UNRESOLVED_ACTION_ROLLBACK = 0
+      LOCAL_TX_UNRESOLVED_ACTION_COMMIT = 1
+      METHOD_TYPE_UNSPECIFIED = 0
+      METHOD_TYPE_REMOTE = 1
+      METHOD_TYPE_REMOTE_HOME = 2
+      METHOD_TYPE_LOCAL = 3
+      METHOD_TYPE_LOCAL_HOME = 4
+      METHOD_TYPE_SERVICE_ENDPOINT = 5
+      PERSISTENCE_BEAN_MANAGED = 0
+      PERSISTENCE_CONTAINER_MANAGED = 1
+      PIN_POLICY_ACTIVATION_PERIOD = 0
+      PIN_POLICY_ACTIVITY_SESSION = 1
+      PIN_POLICY_TRANSACTION = 2
+      PIN_POLICY_BUSINESS_METHOD = 3
+      TX_ATTRIBUTE_TYPE_NOT_SUPPORTED = 0
+      TX_ATTRIBUTE_TYPE_SUPPORTS = 1
+      TX_ATTRIBUTE_TYPE_REQUIRED = 2
+      TX_ATTRIBUTE_TYPE_REQUIRES_NEW = 3
+      TX_ATTRIBUTE_TYPE_MANDATORY = 4
+      TX_ATTRIBUTE_TYPE_NEVER = 5
+      TX_ATTRIBUTE_TYPE_BEAN_MANAGED = 6
+      TX_BEAN_MANAGED = 0
+      TX_CONTAINER_MANAGED = 1
+      TX_ISOLATION_LEVEL_REPEATABLE_READ = 0
+      TX_ISOLATION_LEVEL_READ_COMMITTED = 1
+      TX_ISOLATION_LEVEL_READ_UNCOMMITTED = 2
+      TX_ISOLATION_LEVEL_SERIALIZABLE = 3
+      ivInitData = null
+      _javaNameSpaceContext = null
+      _moduleMetaData = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.OSGiEJBModuleMetaDataImpl@52657ee0
+      _resourceRefList = class com.ibm.ws.resource.internal.ResourceRefConfigListImpl@714f0cb3
+      _localTran = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.LocalTranConfigDataImpl@e747ba7
+      _globalTran = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.GlobalTranConfigDataImpl@680b4c24
+      j2eeName = class com.ibm.ws.container.service.metadata.internal.J2EENameImpl@54870596
+      ivUnversionedJ2eeName = null
+      type = 3
+      ivDependsOn = null
+      entityRemoteNoTxAttrMethods = class java.lang.String[4]
+      entityRemoteNoTxAttrMethodSignatures = class java.lang.String[4]
+      entityLocalNoTxAttrMethods = class java.lang.String[3]
+      entityLocalNoTxAttrMethodSignatures = class java.lang.String[3]
+      entityRemoteHomeNoTxAttrMethods = class java.lang.String[2]
+      entityRemoteHomeNoTxAttrMethodSignatures = class java.lang.String[2]
+      entityLocalHomeNoTxAttrMethods = class java.lang.String[1]
+      entityLocalHomeNoTxAttrMethodSignatures = class java.lang.String[1]
+      sessionLocalHomeNoTxAttrMethods = class java.lang.String[1]
+      sessionLocalHomeNoTxAttrMethodSignatures = class java.lang.String[1]
+      sessionRemoteHomeNoTxAttrMethods = class java.lang.String[1]
+      sessionRemoteHomeNoTxAttrMethodSignatures = class java.lang.String[1]
+      ivModuleVersion = 30
+      enterpriseBeanClassName = "cc.edu.unl.business.TorneoService"
+      enterpriseBeanClass = class java.lang.Class@74493d8c
+      enterpriseBeanAbstractClass = class java.lang.Class@74493d8c
+      homeBeanClass = class java.lang.Class@aa5888
+      ivEnterpriseBeanFactory = class com.ibm.ws.cdi.impl.managedobject.CDIEJBManagedObjectFactoryImpl@5cc3e05a
+      ivEnterpriseBeanClassConstructor = null
+      managedObjectManagesInjectionAndInterceptors = false
+      fullyInitialized = true
+      pKeyClass = null
+      m_syncToOSThreadValue = false
+      ivPersistenceRefNames = null
+      ivJpaPuIdSTUnsyncSet = null
+      ivExPcPuIds = class com.ibm.ws.jpa.JPAPuId[0]
+      homeInterfaceClassName = null
+      homeInterfaceClass = null
+      remoteInterfaceClass = null
+      remoteImplClass = null
+      remoteTieClass = null
+      homeRemoteImplClass = null
+      homeRemoteTieClass = null
+      localHomeInterfaceClassName = null
+      localHomeInterfaceClass = null
+      localInterfaceClass = null
+      localImplClass = null
+      localImplProxyConstructor = null
+      homeLocalImplClass = null
+      homeLocalImplProxyConstructor = null
+      ivHasWebServiceEndpoint = true
+      webserviceEndpointInterfaceClass = null
+      ivWebServiceEndpointProxyName = "cc.edu.unl.business.WSEJBProxySLTorneoService_18b58ef8"
+      ivWebServiceEndpointProxyClass = null
+      ivWebServiceEndpointCreated = false
+      ivBusinessLocalInterfaceClassNames = null
+      ivBusinessLocalInterfaceClasses = class java.lang.Class[1]
+      ivBusinessRemoteInterfaceClassNames = null
+      ivBusinessRemoteInterfaceClasses = null
+      ivBusinessLocalImplClasses = class java.lang.Class[1]
+      ivBusinessLocalImplProxyConstructors = null
+      ivBusinessRemoteImplClasses = null
+      ivBusinessRemoteTieClasses = null
+      ivAggregateLocalImplClass = null
+      ivLocalBean = true
+      ivLocalBeanWrapperField = class java.lang.reflect.Field@3d9e993c
+      ivMessageEndpointBaseField = null
+      ivManagedBeanBeanOField = null
+      ivIndirectLocalProxies = false
+      cmpResetFields = null
+      connFactoryName = null
+      envProps = class java.util.Properties@18e0cd1d
+      simpleJndiBindingName = null
+      localHomeJndiBindingName = null
+      remoteHomeJndiBindingName = null
+      ivRemoteHomeJndiName = null
+      ivLocalHomeJndiName = null
+      businessInterfaceJndiBindingNames = null
+      enterpriseBeanName = "TorneoService"
+      reentrant = false
+      passivationCapable = true
+      sessionTimeout = 0
+      ivSFSBFailover = false
+      ivSfFailoverClient = null
+      sessionActivateTran = false
+      sessionActivateSession = false
+      optionACommitOption = false
+      optionBCommitOption = false
+      optionCCommitOption = false
+      ivReadOnlyCommitOption = false
+      entitySessionalTranOption = false
+      optimisticConcurrencyControl = false
+      CACHE_RELOAD_NONE = 0
+      CACHE_RELOAD_INTERVAL = 1
+      CACHE_RELOAD_DAILY = 2
+      CACHE_RELOAD_WEEKLY = 3
+      ivCacheReloadType = 0
+      ivCacheReloadInterval = -1
+      activationPolicy = 0
+      methodNames = null
+      localMethodNames = class java.lang.String[4]
+      timedMethodNames = null
+      wsEndpointMethodNames = class java.lang.String[13]
+      lifecycleInterceptorMethodNames = null
+      methodInfos = null
+      localMethodInfos = class com.ibm.ejs.container.EJBMethodInfoImpl[4]
+      timedMethodInfos = null
+      wsEndpointMethodInfos = class com.ibm.ejs.container.EJBMethodInfoImpl[13]
+      lifecycleInterceptorMethodInfos = null
+      isolationAttrs = null
+      readOnlyAttrs = null
+      homeMethodNames = null
+      localHomeMethodNames = null
+      homeMethodInfos = null
+      localHomeMethodInfos = null
+      homeIsolationAttrs = null
+      homeReadOnlyAttrs = null
+      commitDanglingWork = false
+      ivHasInheritance = false
+      ivHasAppManagedPersistenceContext = false
+      ivHasCMExtendedPersistenceContext = false
+      usesBeanManagedTx = false
+      usesBeanManagedAS = false
+      cmpVersion = 0
+      persister = null
+      classLoader = class com.ibm.ws.classloading.internal.AppClassLoader@2b137560
+      ivContextClassLoader = class com.ibm.ws.classloading.internal.ThreadContextClassLoader@68b58c3d
+      minPoolSize = 50
+      maxPoolSize = 500
+      allowCachedTimerDataForMethods = 0
+      ivInitialPoolSize = 0
+      ivMaxCreation = 0
+      ivMaxCreationTimeout = 300000
+      isPreFindFlushEnabled = true
+      isCleanEJBStoreEnabled = true
+      fbpkReadOnlyOverrideAllBeans = false
+      allowCustomFinderSQLForUpdateALLBeans = false
+      allowCustomFinderSQLForUpdateThisBean = false
+      allowCustomFinderSQLForUpdateMethodLevel = false
+      allowWAS390CustomFinderAtBeanLevel = false
+      CF_METHOD_NAME_OFFSET = 0
+      CF_METHOD_SIG_OFFSET = 1
+      isTimedObject = false
+      ivTimeoutMethod = null
+      isLightweight = false
+      ivActivationSpecJndiName = null
+      ivActivationSpecAuthAlias = null
+      ivMessageDestinationJndiName = null
+      ivMessageListenerPortName = null
+      ivMessagingTypeClassName = null
+      ivApplicationVersionId = 50
+      ivActivationConfig = null
+      ivDeferEJBInitialization = true
+      ivCluster = null
+      ivBeanInjectionTargets = class com.ibm.wsspi.injectionengine.InjectionTarget[1]
+      ivJavaColonCompEnvMap = class java.util.LinkedHashMap@2b768c81
+      wccm = null
+      ivComponent_Id = null
+      removeTxAttr = 0
+      container = class com.ibm.ejs.container.EJSContainer@2ee1c962
+      homeRecord = class com.ibm.ws.ejbcontainer.osgi.internal.HomeRecordImpl@25b07516
+      accessIntentList = null
+      isoLevelList = null
+      ivCallbackKind = class com.ibm.ws.ejbcontainer.CallbackKind@20ddfedb
+      ivInterceptorMetaData = class com.ibm.ejs.container.interceptors.InterceptorMetaData@2abd38c7
+      ivInitMethodMap = null
+      ivRoleLinkMap = null
+      metadataComplete = false
+      ivUseCallerIdentity = false
+      ivRunAs = null
+      ivEjbCreateMethod = null
+      ivMetaDataDestroyRequired = true
+      supportsFluffOnFind = false
+      ivSingletonUsesBeanManagedConcurrency = false
+      ivHasAsynchMethod = false
+      ivAfterBegin = null
+      ivBeforeCompletion = null
+      ivAfterCompletion = null
+      methodsExposedOnLocalInterface = null
+      methodsExposedOnRemoteInterface = null
+      methodsExposedOnLocalHomeInterface = null
+      methodsExposedOnRemoteHomeInterface = null
+      allPublicMethodsOnBean = null
+      methodsToMethodInfos = null
+      ivReferenceContext = class com.ibm.ws.injectionengine.osgi.internal.OSGiReferenceContextImpl@2cd5ba9e
+      ivPassivatorFields = null
+      ivIsNoMethodInterfaceMDB = false
+      tc = class com.ibm.websphere.ras.TraceComponent@722dfe50
+      NUM_STATIC_SLOTS = 4
+      ID_UNINITIALIZED = -1
+      id = 3
+      metaDataInterface = class java.lang.Class@628a98e9
+      staticSlots = class java.lang.Object[4]
+      dynamicSlots = null
+    ejbMetaData = null
+    environment = class java.util.Properties@18e0cd1d
+      serialVersionUID = "/* Could not access serialVersionUID */"
+      UNSAFE = "/* Could not access UNSAFE */"
+      defaults = "/* Could not access defaults */"
+      map = "/* Could not access map */"
+      table = "/* Could not access table */"
+      count = "/* Could not access count */"
+      threshold = "/* Could not access threshold */"
+      loadFactor = "/* Could not access loadFactor */"
+      modCount = "/* Could not access modCount */"
+      serialVersionUID = "/* Could not access serialVersionUID */"
+      MAX_ARRAY_SIZE = "/* Could not access MAX_ARRAY_SIZE */"
+      keySet = "/* Could not access keySet */"
+      entrySet = "/* Could not access entrySet */"
+      values = "/* Could not access values */"
+      KEYS = "/* Could not access KEYS */"
+      VALUES = "/* Could not access VALUES */"
+      ENTRIES = "/* Could not access ENTRIES */"
+    activationStrategy = class com.ibm.ejs.container.activator.UncachedActivationStrategy@7912434c
+      tc = class com.ibm.websphere.ras.TraceComponent@61179e39
+      CLASS_NAME = "com.ibm.ejs.container.activator.UncachedActivationStrategy"
+      cache = class com.ibm.ejs.util.cache.Cache@6bf837b4
+      locks = class com.ibm.ejs.container.util.locking.LockTable@520eeb3d
+      tc = class com.ibm.websphere.ras.TraceComponent@73735efb
+      CLASS_NAME = "com.ibm.ejs.container.activator.ActivationStrategy"
+    pmiBean = null
+    persister = null
+    lockStrategy = class com.ibm.ejs.container.lock.LockStrategy@4492fc6d
+      EXCLUSIVE_LOCK_STRATEGY = class com.ibm.ejs.container.lock.ExclusiveLockStrategy@21dc8d5f
+      NULL_LOCK_STRATEGY = class com.ibm.ejs.container.lock.LockStrategy@4492fc6d
+    wrapperManager = class com.ibm.ejs.container.WrapperManager@5a0459c7
+      tc = class com.ibm.websphere.ras.TraceComponent@48c7e70a
+      CLASS_NAME = "com.ibm.ejs.container.WrapperManager"
+      wrapperCache = class com.ibm.ejs.util.cache.Cache@5d4ab826
+      container = class com.ibm.ejs.container.EJSContainer@2ee1c962
+      beanIdCache = class com.ibm.ejs.container.BeanIdCache@3c00b2bf
+    enabled = true
+    beanPool = class com.ibm.ws.ejbcontainer.util.PoolImplThreadSafe@2b8e8b22
+    ivNumberBeansCreated = 0
+    BEAN_POOL_WAIT_INTERVAL = 10000
+    ivAIServiceEnabled = false
+    defaultAIMethodInfo = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.OSGiEJBMethodMetaDataImpl@316779e8
+      runAs = null
+      useCallerPrincipal = false
+      useSystemPrincipal = false
+      serialVersionUID = 6211349835382155010
+      $$$tc$$$ = class com.ibm.websphere.ras.TraceComponent@1a3b8198
+      tc = class com.ibm.websphere.ras.TraceComponent@31c8ed1d
+      methodSignature = "__defaultAIMethodInfo__"
+      jdiMethodSignature = "- NO JDI SIGNATURE AVAILABLE - "
+      txAttr = class com.ibm.websphere.csi.TransactionAttribute@7418f1f0
+      asAttr = class com.ibm.websphere.csi.ActivitySessionAttribute@4496f31c
+      ivInterface = class com.ibm.websphere.csi.MethodInterface@3ea2d25e
+      methodName = "__defaultAIMethodInfo__NameOnly"
+      isHome = false
+      isStatefulSessionBean = false
+      bmd = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.OSGiBeanMetaData@25e201d4
+      isStatelessSessionBean = true
+      isSingletonSessionBean = false
+      isHomeCreate = false
+      isComponentRemove = false
+      isolationAttr = 0
+      readOnlyAttr = false
+      isaCMP11CustomFinderWithForUpdateAI = false
+      isaCMP11FBPK = false
+      isLocal = false
+      setClassLoader = false
+      isCMRSetMethod = false
+      isLightweight = false
+      isLightweightTxCapable = false
+      ivJPATaskName = null
+      ivAroundInterceptors = null
+      ivMethod = null
+      ivNumberOfMethodParms = 0
+      ivBridgeMethod = null
+      ivSFSBRemove = false
+      ivRetainIfException = false
+      ivAccessTimeout = -1
+      ivLockType = null
+      ivAsynchMethod = false
+      ivDeclaredExceptions = null
+      ivDeclaredExceptionsComp = null
+      ivDenyAll = false
+      ivPermitAll = false
+      ivRolesAllowed = null
+      tc = class com.ibm.websphere.ras.TraceComponent@722dfe50
+      NUM_STATIC_SLOTS = 4
+      ID_UNINITIALIZED = -1
+      id = -1
+      metaDataInterface = class java.lang.Class@651bb79e
+      staticSlots = class java.lang.Object[4]
+      dynamicSlots = null
+    CachedAI_NotInitialize = 0
+    CachedAI_HasMethodLevelAI = 1
+    CachedAI_HasNoMethodLevelAI = -1
+    cachedHasMethodLevelAI = 0
+    ivCachedBeanLevelAccessIntent = null
+    cvUsePortableClass = true
+    ivAllowEarlyInsert = false
+    homeRecord = class com.ibm.ws.ejbcontainer.osgi.internal.HomeRecordImpl@25b07516
+      systemHomeBindingName = null
+      remoteBindingData = null
+      serialVersionUID = -7648623497327828699
+      $$$tc$$$ = class com.ibm.websphere.ras.TraceComponent@718b689a
+      beanO = class com.ibm.ejs.container.CMStatelessBeanO@1e4288da
+      homeInternal = class com.ibm.ejs.container.SessionHome@64f376ba
+      bmd = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.OSGiBeanMetaData@25e201d4
+      ejbMmd = class com.ibm.ws.ejbcontainer.osgi.internal.metadata.OSGiEJBModuleMetaDataImpl@52657ee0
+      homeOfHomes = class com.ibm.ejs.container.HomeOfHomes@429bd1fc
+      j2eeName = class com.ibm.ws.container.service.metadata.internal.J2EENameImpl@54870596
+      cmpVersion = 0
+      connFactoryName = null
+      ejbName = "TorneoService"
+      classLoader = class com.ibm.ws.classloading.internal.AppClassLoader@2b137560
+      beanType = 3
+      ivRemoteBindingsHelper = null
+      ivLocalBindingsHelper = class com.ibm.ejs.container.BindingsHelper@d9871fc
+      ivJavaGlobalBindings = class java.util.ArrayList@53fc58cc
+      ivJavaAppBindings = class java.util.ArrayList@59f20e31
+      childBeans = class java.util.Hashtable@457a20c2
+      ivHasInheritance = false
+      ivIsChild = false
+      ivShortDefaultBindingsEnabled = null
+    ivSingletonBeanO = null
+    ivCreatingSingletonBeanO = false
+    ivSingletonBeanOCreateFailed = false
+    ivApplicationStarted = true
+    createSingletonLock = class java.util.concurrent.locks.ReentrantLock@ea0213d
+      serialVersionUID = "/* Could not access serialVersionUID */"
+      sync = "/* Could not access sync */"
+  pmiBean = null
+  beanId = class com.ibm.ejs.container.BeanId@b04e9f9
+    tc = class com.ibm.websphere.ras.TraceComponent@19a2d67
+      strings[0] = "TraceComponent[com.ibm.ejs.container.BeanId,class com.ibm.ejs.container.BeanId,[EJBContainer],com.ibm.ejs.container.container,null]"
+    CLASS_NAME = "com.ibm.ejs.container.BeanId"
+    _isHome = false
+    pkey = null
+    j2eeName = class com.ibm.ws.container.service.metadata.internal.J2EENameImpl@54870596
+    byteArray = class com.ibm.ejs.container.util.ByteArray@5ed29f70
+      beanId = class com.ibm.ejs.container.BeanId@b04e9f9
+      CLASS_NAME = "com.ibm.ejs.container.util.ByteArray"
+      data = {-84,-84,0,2,0,1,1,43,0,0,0,97,112,112,45,111,118,101,114,116,105,109,101,35,97,112,112,45,111,118,101,114,116,105,109,101,46,119,97,114,35,84,111,114,110,101,111,83,101,114,118,105,99,101} /* array length = 54 */
+      hashcode = -5696436038709791744
+      hashcode32 = 832213752
+      HEX_CHARS = {0123456789abcdef} /* array length = 16 */
+      initial_hash = -2223765811167872118
+      mix_primary = {4933139351476610159,5005341462544428057,-1453159914355205806,8281325462521708801,4607748714844293732,-3764111934339875086,8320409100192189548,8420247983362759768,-7597847052445934233,-3173910141822783079,-7688989699042292238,3429396389939155751,-5062430034552481777,-5823362867119656213,-8801844128422882523,-5052715516771863111,-870733797230659614,-362319592869525219,4788732200433335801,4548830613927191315,7544806401538812819,7586374831082653871,-1239807311421564983,-1025074758523306758,-6461364975704083531,4980358060886603154,4930714604177104463,2056556441885503234,6415600006540841207,5752606625249102471,-6901047628927138211,4380804002232388461,2136177531279569616,-349124148475530926,5812918152301571081,2653996859211630983,-8964669850071968930,-4437664257013106290,-4451793919529815848,-6106447162657623665,-2784513668583920662,-8414094705339005679,-2207660270505147217,6507182462343745303,3998020595653193692,-4905660070025874796,8975096142356144569,-5041136955134566960,6326461847893020390,-8334182183764239684,8556220744479549098,5952375207892112881,-7978188702101473111,3429112276528980994,-1988898937000646866,2486915316353720383,2757556857947252991,-8035426787455266998,-5909132100679174360,-6318099829270576077,3275413890805227550,8566783651680167794,-8052141503744051402,6010845682144071745,-8304400873715963628,-5908078436425678820,2008553160573808559,-2819166021021999412,5382424027072043613,4009717960598662055,1847990988848319135,1553736051808583315,859749159554435887,7617586268418296496,1137154929561829007,5852822296314685177,-4508192713666290713,-5301006392906118754,1288351301968457687,-8732661820775296997,3743401301997395901,-2419474111827280115,7681208082025123430,3296754401383622098,-7619743871140571789,-5444468319237031174,-1826393263972127734,7226290837104890605,-5114545287089190416,-864060354928875654,-8684023854450108313,-5194241922878987455,-4591192147793544772,1234006919577364415,-3936336625490884591,-6593724713396498301,2779431284120425192,6701924018397514024,-8377286492131653356,-3036688545137929654,3532479440175035477,-2486020288450892679,2250253404502830513,-2809438569251519750,4756054313855198704,1049792658466837024,6008045257375748577,-6694551306109829524,1436162486427990919,1953260999445835298,-9096306926072925342,-4447170959021479724,2281765276900129197,7018045439268088125,3530326859556441572,8928500367007969872,-7548504910768415306,8491174918848727063,2725427544642412950,-1846557650567198975,7692844570254237316,-2329275471928509258,-6598670108873750485,7286879004720242648,1262623724617059856,-244363932095942076,724052077250196479,7172078234317036693,6811892593491539548,-1152819477767237299,5138119163643488320,3665390357066136642,3191793013164901058,-3685846739734149158,3982065459219965474,4822562617140336199,-7365836214641480259,3271367842686489154,8724038983453203841,-5457652260866279808,-7732217390738789556,6693059324359418400,-1682134157496827727,2418769104580471956,8879551251272072751,-4997356740189703104,-9071099120143888272,-680892989853392074,1739587042988643069,3373404624189000959,5680319921195915068,-200507342791498747,-9024929211895825182,-5932255459591969881,6490413647370805508,-1547832658927226783,5735044581415517929,-7479951246403808438,5523990179621710356,218706823903385161,7226912064490112629,-6484667915835023296,3807960521479491588,-6480648837128221188,-4423332479301058453,-4129662350876414705,-3595141808378884930,-418947722213327333,-2844517618114579613,232829063699966274,8466137507511586716,-1118264937587278139,1543018742721807459,-417715424100470517,7978015287561484139,1544841464337700354,2730772503959541077,6769471625959199573,2547724611065914717,-1940936672524046959,5025251617293336350,7320004681537167149,-3912074961302627416,7320690559666328252,5383105008300071328,-174245335696147700,-3487002892556502424,-7875405188139200998,-4846224533375351692,-8233369710693908789,-2513185776770054861,7044164889131634069,-989536329366695740,-2653183515149969267,-6050910942263229355,-6767225479892761414,-8730286237691595927,-7012453055387909991,1133255728415756315,6499423626313885142,-8300437812355002225,9084539283118027484,-6585717722744514702,4401193149167703339,-6984141159414974299,6813307151674075053,-3736939605366610537,2230231106005033322,7182850806518785871,6609805295487548421,-6053556321550009287,-7101717864338141727,-2748614509684029005,-2214104135226745859,1458022522121146992,-6277575509698422280,-3752164500142762032,-7386173236844847452,72421085476613114,8124536607956790703,-543955773244899281,-8431654451114250658,1016600102774762451,5528967934420998822,-3124619278526463133,-2661902829300881246,4614101272245083638,7665806731349260979,-502154115469221375,-2229763030801674433,-5656627420725844516,7754751075884126842,-8397886589148919922,178266931321858041,-3426667875362162740,-894029959067713205,424720112276865871,3940003122762310991,6952877505786372216,-5316198582568905216,-3412595509278337916,4377191117302511558,5078204108498312433,-5686359500817622618,-5011364611249461122,-5411888686611253299,-3917988986397697302,3323582688409225420,-709625314233156680,4388451852439127499,5109473580125722386,-8350301363804656390,8883392537907563280,2983318135082155233,-4968080463103317282,959966860625488182} /* array length = 256 */
+    home = class com.ibm.ejs.container.SessionHome@64f376ba
+    activationStrategy = class com.ibm.ejs.container.activator.UncachedActivationStrategy@7912434c
+    hashValue = -1711595602
+    ivFailoverKey = null
+    HOME_BEAN = 0
+    STATELESS_BEAN = 1
+    STATEFUL_BEAN = 2
+    ENTITY_BEAN = 3
+    MESSAGEDRIVEN_BEAN = 4
+    SINGLETON_BEAN = 5
+    USES_BEAN_MANAGED_TX = 16
+    MODULE_VERSION_CAPABLE = 32
+    TYPE_TO_TYPE_ID_MAP = {0,0,5,1,2,3,3,4} /* array length = 8 */
+    SERIALIZED_PKEY = 0
+    INTEGER_PKEY = 1
+    STRING_PKEY = 3
+    LONG_PKEY = 4
+    BYTE_ARRAY_PKEY = 8
+    BEAN_TYPE_LEN = 1
+    J2EE_NAME_LEN = 4
+    PKEY_TYPE_LEN = 1
+    header = {-84,-84,0,2,0,1} /* array length = 6 */
+    HEADER_LEN = 6
+    svBAOSs = class java.io.ByteArrayOutputStream[50]
+      ByteArrayOutputStream[0] = class java.io.ByteArrayOutputStream@5254f20b
+      ByteArrayOutputStream[1] = null
+      ByteArrayOutputStream[2] = null
+      ByteArrayOutputStream[3] = null
+      ByteArrayOutputStream[4] = null
+      ByteArrayOutputStream[5] = null
+      ByteArrayOutputStream[6] = null
+      ByteArrayOutputStream[7] = null
+      ByteArrayOutputStream[8] = null
+      ByteArrayOutputStream[9] = null
+      ByteArrayOutputStream[10] = null
+      ByteArrayOutputStream[11] = null
+      ByteArrayOutputStream[12] = null
+      ByteArrayOutputStream[13] = null
+      ByteArrayOutputStream[14] = null
+      ByteArrayOutputStream[15] = null
+      ByteArrayOutputStream[16] = null
+      ByteArrayOutputStream[17] = null
+      ByteArrayOutputStream[18] = null
+      ByteArrayOutputStream[19] = null
+      ByteArrayOutputStream[20] = null
+      ByteArrayOutputStream[21] = null
+      ByteArrayOutputStream[22] = null
+      ByteArrayOutputStream[23] = null
+      ByteArrayOutputStream[24] = null
+      ByteArrayOutputStream[25] = null
+      ByteArrayOutputStream[26] = null
+      ByteArrayOutputStream[27] = null
+      ByteArrayOutputStream[28] = null
+      ByteArrayOutputStream[29] = null
+      ByteArrayOutputStream[30] = null
+      ByteArrayOutputStream[31] = null
+      ByteArrayOutputStream[32] = null
+      ByteArrayOutputStream[33] = null
+      ByteArrayOutputStream[34] = null
+      ByteArrayOutputStream[35] = null
+      ByteArrayOutputStream[36] = null
+      ByteArrayOutputStream[37] = null
+      ByteArrayOutputStream[38] = null
+      ByteArrayOutputStream[39] = null
+      ByteArrayOutputStream[40] = null
+      ByteArrayOutputStream[41] = null
+      ByteArrayOutputStream[42] = null
+      ByteArrayOutputStream[43] = null
+      ByteArrayOutputStream[44] = null
+      ByteArrayOutputStream[45] = null
+      ByteArrayOutputStream[46] = null
+      ByteArrayOutputStream[47] = null
+      ByteArrayOutputStream[48] = null
+      ByteArrayOutputStream[49] = null
+    svBAOSsSize = 1
+  beanPool = class com.ibm.ws.ejbcontainer.util.PoolImplThreadSafe@2b8e8b22
+    tc = class com.ibm.websphere.ras.TraceComponent@260b79a2
+      strings[0] = "TraceComponent[com.ibm.ws.ejbcontainer.util.PoolImplThreadSafe,class com.ibm.ws.ejbcontainer.util.PoolImplThreadSafe,[EJBContainer],null,null]"
+    DrainAggressivenessPercentage = 20
+    DISABLED_SIZE = class com.ibm.ws.ejbcontainer.util.PoolImplThreadSafe$SizeData@402a138
+      minSize = 0
+      maxSize = 0
+      maxDrainAmount = 0
+    poolSize = class com.ibm.ws.ejbcontainer.util.PoolImplThreadSafe$SizeData@22bc6c6b
+      minSize = 50
+      maxSize = 500
+      maxDrainAmount = 90
+    buffer = class com.ibm.ws.util.LockFreeIndexedStack@406e8439
+      top = class java.util.concurrent.atomic.AtomicReference@5ad7eaff
+    discardStrategy = class com.ibm.ejs.container.SessionHome@64f376ba
+    ivInactiveNoDrainCount = 0
+    ivManaged = false
+    beanPerf = null
+    inactive = true
+    poolMgr = class com.ibm.ws.ejbcontainer.util.PoolManagerImpl@4f48ecc0
+      tc = class com.ibm.websphere.ras.TraceComponent@585592bd
+      pools = class java.util.ArrayList@153d7332
+      poolArray = class com.ibm.ws.ejbcontainer.util.PoolImplBase[10]
+      drainInterval = 30000
+      ivScheduledFuture = null
+      ivScheduledExecutorService = class com.ibm.ws.threading.internal.ScheduledExecutorImpl@56521b4d
+      ivIsCanceled = false
+      ivIsRunning = false
+  connectionHandleList = null
+  ivContainerTx = null
+  ivActivationStrategy = null
+  ivCacheKey = null
+

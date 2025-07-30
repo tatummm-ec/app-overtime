@@ -123,30 +123,16 @@
         <div class="hero-container">
             <h1 class="hero-title">OverTime</h1>
             <p class="hero-desc">La plataforma definitiva para crear, gestionar y seguir torneos deportivos.</p>
-
-            <!-- Panel si hay torneos -->
-            <p:panel header="Mis Torneos" rendered="#{homeBean.tieneTorneos}">
-                <p>Accede rápidamente a tus torneos:</p>
-                <ul>
-                    <ui:repeat value="#{homeBean.misTorneos}" var="torneo">
-                        <li>
-                            <h:commandLink value="#{torneo.nombre}" action="#{torneoBean.seleccionarTorneoPorId(torneo.id)}" />
-                        </li>
-                    </ui:repeat>
-
-                </ul>
-            </p:panel>
-
-            <!-- Panel si NO hay torneos -->
-            <p:panel rendered="#{!homeBean.tieneTorneos}">
-                <p>¡Bienvenido! Aún no participas en ningún torneo.<br/>
-                    ¡Anímate y crea el primero!</p>
-            </p:panel>
-
             <!-- Botón para crear nuevo torneo -->
-            <p:commandButton value="Crear Nuevo Torneo"
-                             action="new_torneo?faces-redirect=true"
-                             styleClass="main-button"/>
+            <div class="button-container" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                <p:commandButton value="Crear Nuevo Torneo"
+                                 action="new_torneo?faces-redirect=true"
+                                 styleClass="main-button"/>
+
+                <p:commandButton value="Ver Torneos"
+                                 action="lista_torneos?faces-redirect=true"
+                                 styleClass="main-button"/>
+            </div>
         </div>
     </h:form>
 
@@ -155,7 +141,7 @@
     <div class="logout-button">
         <h:form>
             <p:commandButton value="Cerrar sesión"
-                             action="#{authBean.logout}"
+                             action="#{authenticationBean.logout}"
                              icon="pi pi-sign-out"
                              styleClass="ui-button ui-button-danger"/>
         </h:form>

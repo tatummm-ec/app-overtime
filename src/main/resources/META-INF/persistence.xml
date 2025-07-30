@@ -10,11 +10,11 @@
         <properties>
             <!-- CONFIGURACION DE CONEXION A LA BD -->
             <!-- SOLO FUNCIONA CON transaction-type="RESOURCE_LOCAL" -->
-            <!--
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jbrew"/>
-            <property name="jakarta.persistence.jdbc.user" value="jbrewuser"/>
-            <property name="jakarta.persistence.jdbc.password" value="jbrewUser2525"/>
-            -->
+
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/overtime"/>
+            <property name="jakarta.persistence.jdbc.user" value="overtimeuser"/>
+            <property name="jakarta.persistence.jdbc.password" value="overtimeUser2525"/>
+
             <!-- FIN CONFIGURACION DE CONEXION A LA BD -->
 
             <!-- 1. Configuración de generación / actualización de tablas (esquema de BD) -->
@@ -35,6 +35,7 @@
 
             <!-- Caché (opcional) -->
             <property name="eclipselink.cache.shared.default" value="false"/>
+            <property name="eclipselink.jdbc.ssl" value="false"/>
 
             <!-- Configuración para OpenLiberty -->
             <property name="eclipselink.target-server" value="Liberty"/>

@@ -15,6 +15,7 @@ public class TablaPosicionesService {
     private CrudGenericService crudGenericService;
 
     // Obtener la tabla de posiciones ordenada
+    /*
     public List<Equipo> obtenerTablaPosiciones() {
         List<Equipo> equipos = crudGenericService.findWithNamedQuery("Equipo.findAll");
         return equipos.stream()
@@ -27,6 +28,7 @@ public class TablaPosicionesService {
                 })
                 .collect(Collectors.toList());
     }
+     */
 
     // Crear un nuevo equipo
     public Equipo crearEquipo(Equipo equipo) {

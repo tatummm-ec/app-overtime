@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Lista de Torneos</title>
+    <meta charset="UTF-8"/>
+    <style>
+        body {
+            background-image: url('images/fondo_estadio.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .titulo {
+            font-size: 3em;
+            font-weight: bold;
+            margin-top: 50px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .btn-crear-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            margin: 40px 0 30px 0;
+        }
+
+        .tabla-estilizada {
+            background-color: white;
+            color: black;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin: 0 auto; /* Centrar tabla */
+        }
+
+        .ui-datatable thead th {
+            background-color: #fff;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .ui-datatable tbody td {
+            text-align: center;
+            padding: 12px 10px;
+        }
+
+        .acciones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-inscribir {
+            background: linear-gradient(to right, #a8e063, #56ab2f);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            padding: 6px 12px;
+            cursor: default;
+        }
+
+        .separador {
+            margin-bottom: 20px;
+        }
+
+        .botones-posiciones {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:form>
+        <div class="contenedor">
+            <h1 class="titulo">LISTA DE TORNEOS</h1>
+            <div class="separador"></div>
+
+            <div class="botones-posiciones">
+                <p:commandButton value="Ver Tabla de Posiciones"
+                                 action="tabla_posiciones?faces-redirect=true"/>
+                <p:commandButton value="Administrar Partidos"
+                                 action="registrar_partidos?faces-redirect=true"
+                                 icon="pi pi-star"
+                                 styleClass="ui-button-warning"/>
+            </div>
+
+            <p:dataTable rows="5" paginator="true"
+                         styleClass="tabla-estilizada"
+                         responsiveLayout="scroll"
+                         value="#{listaTorneosBean.torneos}"
+                         var="torneo">
+
+                <p:column headerText="Nombre del Torneo">
+                    #{torneo.nombre}
+                </p:column>
+
+                <p:column headerText="Periodo">
+                    Fecha inicio: #{torneo.fechaInicio} <br/>
+                    Fecha fin: #{torneo.fechaFin}
+                </p:column>
+
+                <p:column headerText="Acción">
+                    <div class="acciones">
+                        <p:commandButton value="Editar"
+                                         action="#{torneoBean.editar}"
+                                         icon="pi pi-pencil"
+                                         process="@this"
+                                         ajax="false ">
+                            <f:setPropertyActionListener value="#{torneo}" target="#{torneoBean.torneo}"/>
+
+                        </p:commandButton>
+                        <p:button value="Inscribir equipos"
+                                  outcome="inscribir_equipos"
+                                  icon="pi pi-users"/>
+                    </div>
+                </p:column>
+
+            </p:dataTable>
+        </div>
+    </h:form>
+</h:body>
+</html>

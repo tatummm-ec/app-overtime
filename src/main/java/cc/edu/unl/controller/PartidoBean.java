@@ -47,7 +47,7 @@ public class PartidoBean implements Serializable {
     @PostConstruct
     public void init() {
         if (torneoBean.getTorneoSeleccionado() != null) {
-            partidos = partidoService.obtenerPartidosPorTorneo(torneoBean.getTorneoSeleccionado().getId());
+            //partidos = partidoService.obtenerPartidosPorTorneo(torneoBean.getTorneoSeleccionado().getId());
             equipos = torneoBean.getTorneoSeleccionado().getEquipos(); // si la relación existe
         } else {
             partidos = List.of();
@@ -74,13 +74,13 @@ public class PartidoBean implements Serializable {
             nuevo.setEquipoVisitante(nuevoEquipoVisitante);
             nuevo.setFecha(nuevaFecha);
             nuevo.setHora(nuevaHora);
-            nuevo.setLugar(nuevoLugar);
-            nuevo.setTorneo(torneoBean.getTorneoSeleccionado());
+            //nuevo.setLugar(nuevoLugar);
+            //nuevo.setTorneo(torneoBean.getTorneoSeleccionado());
 
-            partidoService.organizarPartido(nuevo);
-            partidos = partidoService.obtenerPartidos(); // Refresca la lista
+            //partidoService.organizarPartido(nuevo);
+            //partidos = partidoService.obtenerPartidos(); // Refresca la lista
             limpiarFormulario();
-            partidos = partidoService.obtenerPartidosPorTorneo(torneoBean.getTorneoSeleccionado().getId());
+            //partidos = partidoService.obtenerPartidosPorTorneo(torneoBean.getTorneoSeleccionado().getId());
             FacesUtil.addSuccessMessage("Éxito", "Partido registrado correctamente.");
             return "torneo.xhtml?faces-redirect=true";
 

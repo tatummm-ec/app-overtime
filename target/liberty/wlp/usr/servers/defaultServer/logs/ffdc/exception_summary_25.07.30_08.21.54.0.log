@@ -1,0 +1,26 @@
+
+ Index  Count  Time of first Occurrence    Time of last Occurrence     Exception SourceId ProbeId
+------+------+---------------------------+---------------------------+---------------------------
+     0      2  30/07/25, 08:21:54:337 COT  30/07/25, 08:22:00:724 COT com.ibm.ws.rsadapter.exceptions.DataStoreAdapterException com.ibm.ejs.j2c.poolmanager.FreePool.createManagedConnectionWithMCWrapper 199
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.21.54.0.log
+     1      2  30/07/25, 08:21:54:394 COT  30/07/25, 08:22:00:725 COT jakarta.resource.spi.ResourceAllocationException com.ibm.ws.rsadapter.jdbc.WSJdbcDataSource.getConnection 299
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.21.54.1.log
+     2      2  30/07/25, 08:21:54:405 COT  30/07/25, 08:22:00:725 COT jakarta.persistence.PersistenceException com.ibm.ws.jpa.management.JPAPUnitInfo.createEMFactory 759
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.21.54.2.log
+     3     14  30/07/25, 08:23:23:482 COT  30/07/25, 08:24:49:462 COT java.lang.RuntimeException com.ibm.wsspi.injectionengine.InjectionBinding.getInjectionObject 408
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.23.23.0.log
+     4      7  30/07/25, 08:23:23:491 COT  30/07/25, 08:24:49:461 COT com.ibm.wsspi.injectionengine.InjectionException com.ibm.ws.cdi.impl.weld.injection.WebSphereInjectionServicesImpl 201
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.23.23.1.log
+     5      7  30/07/25, 08:23:23:552 COT  30/07/25, 08:24:49:462 COT com.ibm.wsspi.injectionengine.InjectionException com.ibm.ws.cdi.impl.weld.injection.WebSphereInjectionServicesImpl.inject 248
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.23.23.2.log
+     6      7  30/07/25, 08:23:23:588 COT  30/07/25, 08:24:49:462 COT java.security.PrivilegedActionException com.ibm.ws.cdi.impl.weld.injection.WebSphereInjectionServicesImpl 118
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.23.23.3.log
+     7      7  30/07/25, 08:23:23:624 COT  30/07/25, 08:24:49:462 COT com.ibm.wsspi.injectionengine.InjectionException com.ibm.ws.cdi.impl.managedobject.CDIManagedObject 185
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.23.23.4.log
+     8      7  30/07/25, 08:23:23:701 COT  30/07/25, 08:24:49:462 COT com.ibm.wsspi.injectionengine.InjectionException com.ibm.ejs.container.ManagedBeanOBase.injectInstance 157
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.23.23.5.log
+     9      7  30/07/25, 08:23:23:744 COT  30/07/25, 08:24:49:464 COT jakarta.ejb.EJBException com.ibm.ejs.container.BusinessExceptionMappingStrategy.setUncheckedException 506
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.23.23.6.log
+    10      1  30/07/25, 08:34:50:794 COT  30/07/25, 08:34:50:794 COT jakarta.servlet.ServletException com.ibm.ws.webcontainer.filter.WebAppFilterChain.doFilter 82
+                                                                            - C:\SandboxPOO\Proyecto\app-overtime\target\liberty\wlp\usr\servers\defaultServer\logs\ffdc\ffdc_25.07.30_08.34.50.0.log
+------+------+---------------------------+---------------------------+---------------------------

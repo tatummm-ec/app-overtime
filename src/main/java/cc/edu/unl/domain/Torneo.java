@@ -1,6 +1,7 @@
 package cc.edu.unl.domain;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "TORNEO")
+@Table(name = "Torneo")
 @NamedQueries({
         @NamedQuery(name = "Torneo.findAll", query = "SELECT t FROM Torneo t")
 })
@@ -17,26 +18,26 @@ public class Torneo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombre;
-    //private String categoria;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "torneo_id") // clave foránea en tabla Equipo
+    @JoinColumn(name = "torneo_id")
     private List<Equipo> equipos = new ArrayList<>();
 
-
-    // Constructor vacío requerido por JPA
     public Torneo() {
     }
 
-    // Constructor con campos para facilidad
     public Torneo(String nombre, String categoria, LocalDate fechaInicio, LocalDate fechaFin) {
         this.nombre = nombre;
-        //this.categoria = categoria;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+    }
+
+    public Torneo(String nombre) {
+        this.nombre = nombre;
     }
 
     // Getters y Setters
@@ -55,7 +56,6 @@ public class Torneo implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     public LocalDate getFechaInicio() {
         return fechaInicio;
@@ -80,7 +80,6 @@ public class Torneo implements Serializable {
     public void setEquipos(List<Equipo> equipos) {
         this.equipos = equipos;
     }
-
 
     @Override
     public boolean equals(Object o) {

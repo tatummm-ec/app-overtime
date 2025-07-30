@@ -1,6 +1,7 @@
 package cc.edu.unl.controller;
 
-import cc.edu.unl.controller.AuthenticationBean.Torneo; // Importa la clase interna
+//import cc.edu.unl.controller.AuthenticationBean.Torneo; // Importa la clase interna
+import cc.edu.unl.domain.Torneo;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -21,7 +22,7 @@ public class HomeBean implements Serializable {
     public void init() {
         // Le preguntamos al authBean por el usuario y sus torneos
         if (authBean != null && authBean.isUserLoggedIn()) {
-            this.misTorneos = authBean.getCurrentUser().getTorneos();
+            //this.misTorneos = authBean.getCurrentUser().getTorneos();
         }
     }
 

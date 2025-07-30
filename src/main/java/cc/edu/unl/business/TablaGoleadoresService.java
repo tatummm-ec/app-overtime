@@ -34,4 +34,3 @@ public class TablaGoleadoresService {
         crudGenericService.delete(Goleador.class, id);
     }
 }
-

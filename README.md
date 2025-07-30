@@ -34,3 +34,187 @@ docker run -it --rm -p 9080:9080 torneos-futbol-web:v1
 ```
 
 Once the runtime starts, you can access the project at [http://localhost:9080/](http://localhost:9080/).
+
+REQUERIMIENTOS:
+
+El sistema permite realizar el seguimiento de torneos de futbol.
+
+Al inicio del torneo, se puede crear un nuevo torneo y asignar la lista de equipos que participan
+Registrar las fechas del torneo, es decir se registran la lista de los partidos (match) que existen
+Al finalizar la fecha se debe poder registrar los resultados de cada partido
+Se puede consultar la tabla de posiciones del torneo.
+
+El sistema debe permitir la autenticacion del usuario administrador para registrar todas las entidades del sistema
+
+CONCEPTOS:
+
+Torneo: Una competencia que involucra a varios equipos
+Equipo: Institucion registrada / inscrita para participar en un torneo
+FechaTorneo:  El conjunto de partidos que se realizan durante el tiempo que esta activo el torneo 
+Partido: Competencia espeficica entre dos equipos, cada equipo puede tener un solo partido en cada fecha
+Resultado: Determina cual fue el resultado de la competencia entre los equipos que jugaron un partido 
+
+
+DIAGRAMA CLASES:
+Clases y relaciones entre clases (herencia, asociacion, composicion)
+
++---------------------+                  Inscripcion   n ------------- 1  +---------------------+
+|     Torneo          |  n                                                |     Equipo          |
++---------------------+  --------------XXXXX----------------------------  +---------------------+
+| nombre: String      |  n                                            n   | nombre:             |
+| inicio:             |                            +--------------------  | ciudad:             |
+| fin:                |                            |                  2   +---------------------+
++---------------------+                            |                      
+                                                   |
+                                                   |
+                                                   |
+                                                   | 1
+                                       +-------------------------+                    +---------------------+
+                                       |      Partido            | 1               1  |     Resultado       | 
+                                       +-------------------------+ -----------------  +---------------------+
+                                       | fecha:                  |                    | veredicto:          |
+                                       | hora:                   |                    | marcador:           |
+                                       +-------------------------+                    | golesLocal:        |
+                                                    | n                               | golesVisitante     |
+                                                    |                                 +---------------------+
+                                                    |
+                                                    | 1
+                                        +-------------------------+
+                                        |      Fecha              |
+                                        +-------------------------+
+                                        | inicio:                 |
+                                        | fin  :                  |
+                                        +-------------------------+
+
+
+MODELO ENTIDAD - RELACION
+
+Tablas y relaciones
+
+Torneo
+------
+id: long
+nombre: varchar(100)
+fechaInicio: date
+fechaFin: date
+
+Equipo
+------
+id: long
+nombre: varchar(100)
+ciudad: varchar(100)
+
+Inscripcion
+-----------
+id: 
+fechaRegistro:
+equipo_id: long
+torneo_id: long
+
+Partido
+-------
+id: 
+fecha:
+hora:
+equipoLocal_id:
+equipoVisitante_id:
+veredicto: 
+marcador:
+golesLocal:
+golesVisitante:
+fecha_id
+
+Fecha
+-----
+id:
+inicio:
+fin:
+
+
+Usuario
+-------
+nombre: varchar(100)
+contrasena: varcahr(100)
+
+
+CASOS DE USO
+
+        o
+       / |\      +------------ Administrar Torneos
+        /\       |
+ Administrador   + ----------- Crear equipo
+                 |
+                 + ----------- Inscribir equipo en torneo
+                 |
+                 + ----------- Crear fecha del torneo 
+                 |
+                 + ----------- Agregar partidos a una fecha 
+                 |
+                 + ----------- Registrar resultados
+                 |
+                 + ----------- Mostrar tabla de posiciones
+ 
+
+Caso de Uso: Crear Torneo
+
+Curso Basico
+1. El adminiistrador del sistema escoje la opcion Administrar torneos y se presenta la pantalla [Lista de torneos]
+2. El administrador escoge la opcion [Crear torneo] y el sistema presenta la pantalla [Editar torneo]
+3. El administrador registra el nombre la fecha de inicio y la fecha de fin y presiona el boton [Guardar]
+4. El sistema guarda el torneo, notifica que la creacion fue correcta y el caso de uso finaliza.
+
+Cursos alternos
+2A El administrador escoge la opcion [Editar torneo] frente al torneo que desea editary el sistema RECUPERA el 
+torneo a editar y lo presenta la pantalla [Editar torneo]
+El caso de uso continua en el paso 3
+
+Caso de Uso: Crear Equipo
+
+El adminiistrador del sistema escoje la opcion Administrar equipos y se presenta la pantalla [Lista de equipos]
+El administrador escoge la opcion [Crear equipo] y el sistema presenta la pantalla [Editar equipo]
+El administrador registra el nombre y la ciudad y presiona el boton [Guardar]
+El sistema guarda el equipo, notifica que la creacion fue correcta y el caso de uso finaliza.
+
+
+Caso de uso: Inscribir equipo en torneo
+1. El adminiistrador del sistema escoje la opcion Administrar torneos y se presenta la pantalla [Lista de torneos]
+2. El administrador escoge la opcion [Inscribir equipos],  el sistema recupera el torneo seleccionado y  presenta la pantalla [Inscribir equipos]
+3. Para cada equipo a inscribir, el administrador digita el nombre del equipo a inscribir en la seccion de busqueda de equipos, el sistema busca los equipos que coincidan con el nombre ingresado, 
+4. El administrador selecciona el equipo a inscribir, el sistema agrega el equipo seleccionado a la lista de equipos del torneo
+5. EL administrador presiona el boton Guardar y el sistema guarda las inscripciones de los equipos en el torneo seleccionado
+
+Caso de uso : Crear fecha del torneo
+Curso Basico
+1. El administrador del sistema escoje la opcion Crear fecha del torneo [Lista de torneos]
+2. El administrador escoge la opcion [Crear fecha] y el sistema presenta la pantalla [Editar torneo]
+3. El administrador crea la fecha del torneo [Guardar]
+4. El sistema guarda la fecha del torneo, notifica que la creacion fue correcta y el caso de uso finaliza.
+
+Caso de uso: Agregar partidos a una fecha
+1. El administrador del sistema escoje la opcion Administrar torneos y se presenta la pantalla [Lista de torneos]
+2. El administrador escoge la opcion [Agregar Parido],  el sistema recupera el torneo seleccionado y  presenta la pantalla [Administrar Partido ]
+3. Para cada equipo a jugar, el administrador digita el nombre del equipo a inscribir en la seccion de busqueda de equipos (equipo Local y equipo Visitante), el sistema busca los equipos que coincidan con el nombre ingresado,
+4. El administrador selecciona los equipos, el sistema agrega la fecha para registrar el partido.
+5. EL administrador presiona el boton Guardar y el sistema guarda la fecha del partido.
+
+Caso de uso: Registrar resultados
+1. El administrador del sistema escoje la opcion Administrar torneos y se presenta la pantalla [Lista de torneos]
+2. El administrador escoge la opcion [Registrar resultados], el sistema recupera el partido y permite el registro
+3. . El administrador selecciona los equipos, el sistema agrega la fecha para registrar el partido.
+4. El administrador coloca el resultado a partir de los ENUM.
+5. EL administrador presiona el boton Guardar y el sistema guarda el resultado.
+
+Caso de uso: Mostrar tabla de posiciones
+1. El administrador del sistema escoje la opcion Administrar torneos y se presenta la pantalla [Lista de torneos]
+2. El administrador escoge la opcion [Ver Estadisticas], el sistema hace consultas del torneo
+3. Se observa todos los datos, impresos en una tabla
+
+
+DISENO
+Definir arquitectura general del sistema
+M V C
+
+
+XHTML  ---> Controlador General JSF  --->  Controlador JSF De pantalla (Bean)  --->  Servicio ---> Base de datos
+
+lista_torneos.xhtml  ---> ListaTorneosBean.java --->  TorneoService
