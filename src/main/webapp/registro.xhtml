@@ -24,29 +24,29 @@
                         <p:autoUpdate/>
                     </p:messages>
 
-                    <p:inputText value="#{registerBean.name}" placeholder="Nombre completo"
+                    <p:inputText value="#{registerBean.user.name}" placeholder="Nombre completo"
                                  style="width:100%; margin-bottom:1rem;"
                                  required="true" requiredMessage="El nombre es obligatorio"/>
 
-                    <p:inputText value="#{registerBean.email}" placeholder="Correo electrónico"
+                    <p:inputText value="#{registerBean.user.email}" placeholder="Correo electrónico"
                                  style="width:100%; margin-bottom:1rem;"
                                  required="true" requiredMessage="El correo electrónico es obligatorio"/>
 
-                    <p:inputText value="#{registerBean.username}" placeholder="Nombre de usuario"
+                    <p:inputText value="#{registerBean.user.username}" placeholder="Nombre de usuario"
                                  style="width:100%; margin-bottom:1rem;"
                                  required="true" requiredMessage="El nombre de usuario es obligatorio"/>
 
-                    <p:password value="#{registerBean.password}" placeholder="Contraseña"
+                    <p:password value="#{registerBean.user.password}" placeholder="Contraseña"
                                 style="width:100%; margin-bottom:1rem;"
                                 feedback="true"
                                 required="true" requiredMessage="La contraseña es obligatoria"/>
 
-                    <p:password value="#{registerBean.confirmPassword}" placeholder="Confirmar contraseña"
+                    <p:password value="#{registerBean.passwordValidate}" placeholder="Confirmar contraseña"
                                 style="width:100%; margin-bottom:1.5rem;"
                                 required="true" requiredMessage="La confirmación de contraseña es obligatoria"/>
 
                     <p:commandButton value="Registrarse"
-                                     action="#{registerBean.register}"
+                                     action="#{registerBean.crearUsuario()}"
                                      icon="pi pi-user-plus"
                                      style="width:100%; background-color:#ff6600; color:white; font-weight:bold; border:none;"
                                      ajax="false"/>
