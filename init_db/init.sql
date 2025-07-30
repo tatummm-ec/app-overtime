@@ -1,39 +1,46 @@
-CREATE DATABASE IF NOT EXISTS overtime;
-GRANT ALL PRIVILEGES ON overtime.* TO 'overtimeuser'@'%';
-FLUSH PRIVILEGES;
+-- Crear base de datos (ajustar si ya existe)
+CREATE DATABASE IF NOT EXISTS overtime_db;
+USE overtime_db;
 
-CREATE TABLE IF NOT EXISTS Equipo (
+-- Tabla de usuarios
+CREATE TABLE usuario (
+                         id INT AUTO_INCREMENT PRIMARY KEY,
+                         nombre VARCHAR(100) NOT NULL,
+                         correo VARCHAR(100) UNIQUE NOT NULL,
+                         contrasena VARCHAR(100) NOT NULL
+);
 
-    id BIGINT PRIMARY KEY,
-    nombre VARCHAR(100),
-    partidosJugados INT,
-    partidosGanados INT,
-    partidosEmpatados INT,
-    partidosPerdidos INT,
-    golesFavor INT,
-    golesContra INT
-    );
+-- Tabla de torneos
+CREATE TABLE torneo (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        nombre VARCHAR(100) NOT NULL,
+                        categoria VARCHAR(50),
+                        fecha_inicio DATE,
+                        fecha_fin DATE,
+                        usuario_id INT,
+                        FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE
+);
 
-INSERT INTO Equipo VALUES (1, 'Barcelona', 0, 0, 0, 0, 0, 0);
-INSERT INTO Equipo VALUES (2, 'Emelec', 0, 0, 0, 0, 0, 0);
+-- Tabla de equipos
+CREATE TABLE equipo (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        nombre VARCHAR(100) NOT NULL,
+                        torneo_id INT,
+                        FOREIGN KEY (torneo_id) REFERENCES torneo(id) ON DELETE CASCADE
+);
 
-CREATE TABLE IF NOT EXISTS Partido (
-   id BIGINT PRIMARY KEY,
-   equipo_local_id BIGINT,
-   equipo_visitante_id BIGINT,
-   fecha DATE,
-   hora TIME,
-   lugar VARCHAR(100),
-    FOREIGN KEY (equipo_local_id) REFERENCES Equipo(id),
-    FOREIGN KEY (equipo_visitante_id) REFERENCES Equipo(id)
-    );
-
-INSERT INTO Partido VALUES (1, 1, 2, '2025-08-10', '18:30:00', 'Estadio Monumental');
-
-CREATE TABLE IF NOT EXISTS Goleador (
-    id BIGINT PRIMARY KEY,
-    nombre VARCHAR(100),
-    goles INT
-    );
-
-INSERT INTO Goleador VALUES (1, 'Damián Díaz', 10);
+-- Tabla de partidos
+CREATE TABLE partido (
+                         id INT AUTO_INCREMENT PRIMARY KEY,
+                         fecha DATE,
+                         hora TIME,
+                         lugar VARCHAR(100),
+                         equipo_local_id INT,
+                         equipo_visitante_id INT,
+                         goles_local INT DEFAULT 0,
+                         goles_visitante INT DEFAULT 0,
+                         torneo_id INT,
+                         FOREIGN KEY (equipo_local_id) REFERENCES equipo(id),
+                         FOREIGN KEY (equipo_visitante_id) REFERENCES equipo(id),
+                         FOREIGN KEY (torneo_id) REFERENCES torneo(id) ON DELETE CASCADE
+);

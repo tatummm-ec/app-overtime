@@ -18,7 +18,7 @@ public class Torneo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private String categoria;
+    //private String categoria;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
 
@@ -34,7 +34,7 @@ public class Torneo implements Serializable {
     // Constructor con campos para facilidad
     public Torneo(String nombre, String categoria, LocalDate fechaInicio, LocalDate fechaFin) {
         this.nombre = nombre;
-        this.categoria = categoria;
+        //this.categoria = categoria;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
     }
@@ -56,13 +56,6 @@ public class Torneo implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 
     public LocalDate getFechaInicio() {
         return fechaInicio;

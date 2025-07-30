@@ -25,7 +25,7 @@ public class CrudGenericService implements Serializable {
     public static final String PERSISTENCE_FETCHGRAPH = "javax.persistence.fetchgraph";
     public static final String PERSISTENCE_LOADGRAPH = "javax.persistence.loadgraph";
 
-    @PersistenceContext//(name = "JbrewPU", unitName = "JbrewPU")
+    @PersistenceContext (name = "tuappPU", unitName = "tuappPU")
     private EntityManager em;
 
     public <T> T create(T t) {
@@ -156,8 +156,10 @@ public class CrudGenericService implements Serializable {
         return query.executeUpdate();
     }
 
-    public <T> List<T> findWithNamedQuery(String namedQueryName) {
-        return this.em.createNamedQuery(namedQueryName).getResultList();
+    public <T> List findWithNamedQuery(String namedQueryName) {
+        System.out.println("EM es null? " + (em == null));
+        assert em != null;
+        return em.createNamedQuery(namedQueryName).getResultList();
     }
 
     public <T> List<T> findWithNamedQuery(String namedQueryName, Map<String, Object> parameters) {
