@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+
+    <ui:define name="title-view">
+        Nuevo Equipo - OverTime
+    </ui:define>
+
+    <ui:define name="content">
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background:#f5f5f5;">
+            <h:form id="formCrearEquipo" style="width: 100%; max-width: 500px; background-color: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+
+                <h2 style="text-align: center; margin-bottom: 2rem; color:#333;">Crear Nuevo Equipo</h2>
+
+                <p:messages id="messages" showDetail="true" closable="true" style="margin-bottom:1rem;">
+                    <p:autoUpdate/>
+                </p:messages>
+
+                <p:inputText
+                        id="nombreEquipo"
+                        value="#{equipoBean.equipo.nombre}"
+                        placeholder="Nombre del Equipo"
+                        style="width: 100%; margin-bottom: 1.5rem;"
+                        required="true"
+                        requiredMessage="El nombre del equipo es obligatorio" />
+
+                <p:inputText
+                        id="nombreCiudad"
+                        value="#{equipoBean.equipo.ciudad}"
+                        placeholder="Ciudad"
+                        style="width: 100%; margin-bottom: 1.5rem;"
+                        required="true"
+                        requiredMessage="La ciudad es obligatorio" />
+
+
+                <p:commandButton
+                        id="btnCrearEquipo"
+                        value="Crear Equipo "
+                        process="@this, nombreEquipo, nombreCiudad"
+                        action= "#{equipoBean.crearEquipo()}"
+                        rendered="#{torneoBean.editarAction eq 'N'}"
+                        icon="pi pi-check"
+                        style="width: 100%; background-color: #ff6600; color: white; font-weight: bold;"/>
+
+                <p:commandButton
+                        id="btnEditarEquipo"
+                        value="Editar Equipo"
+                        process="@this, nombreEquipo, nombreCiudad"
+                        action= "#{equipoBean.editarEquipo()}"
+                        rendered="#{torneoBean.editarAction eq 'S'}"
+                        icon="pi pi-pencil"
+                        style="width: 100%; background-color: #FF4D00; color: white; font-weight: bold;"/>
+
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
+</html>

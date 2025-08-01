@@ -28,6 +28,6 @@ public class EquipoRepository {
     }
 
     public List<Equipo> findAll() {
-        return crudService.findWithNamedQuery("Equipo.findAll");
+        return crudService.findWithQuery("SELECT e FROM Equipo e");
     }
 }

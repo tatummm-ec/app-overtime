@@ -13,7 +13,8 @@
 
     <ui:define name="content">
         <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background:#f5f5f5;">
-            <h:form id="formCrearTorneo" style="width: 100%; max-width: 500px; background-color: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+            <h:form id="formCrearTorneo"
+                    style="width: 100%; max-width: 500px; background-color: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
 
                 <h2 style="text-align: center; margin-bottom: 2rem; color:#333;">Crear Nuevo Torneo</h2>
 
@@ -27,7 +28,7 @@
                         placeholder="Nombre del Torneo"
                         style="width: 100%; margin-bottom: 1.5rem;"
                         required="true"
-                        requiredMessage="El nombre del torneo es obligatorio" />
+                        requiredMessage="El nombre del torneo es obligatorio"/>
 
                 <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
                     <p:calendar
@@ -36,7 +37,7 @@
                             pattern="dd/MM/yyyy"
                             placeholder="Fecha de Inicio"
                             required="true"
-                            requiredMessage="La fecha de inicio es obligatoria" />
+                            requiredMessage="La fecha de inicio es obligatoria"/>
 
                     <p:calendar
                             id="fechaFin"
@@ -44,21 +45,23 @@
                             pattern="dd/MM/yyyy"
                             placeholder="Fecha de Fin"
                             required="true"
-                            requiredMessage="La fecha de fin es obligatoria" />
+                            requiredMessage="La fecha de fin es obligatoria"/>
                 </div>
 
                 <p:commandButton
                         id="btnCrearTorneo"
                         value="Crear Torneo "
                         process="@this, nombreTorneo, fechaInicio, fechaFin"
-                        action= "#{torneoBean.crearTorneo()}"
+                        action="#{torneoBean.crearTorneo()}"
                         icon="pi pi-check"
-                        style="width: 100%; background-color: #ff6600; color: white; font-weight: bold;"/>
+                        style="width: 100%; background-color: #ff6600; color: white; font-weight: bold;"
+                        rendered="#{torneoBean.editarAction eq 'N'}"/>
                 <p:commandButton
+                        rendered="#{torneoBean.editarAction eq 'S'}"
                         id="btnEditarTorneo"
                         value="Editar Torneo"
                         process="@this, nombreTorneo, fechaInicio, fechaFin"
-                        action= "#{torneoBean.editarTorneo()}"
+                        action="#{torneoBean.editarTorneo()}"
                         icon="pi pi-pencil"
                         style="width: 100%; background-color: #FF4D00; color: white; font-weight: bold;"/>
 

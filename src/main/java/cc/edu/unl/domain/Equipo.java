@@ -3,6 +3,7 @@ package cc.edu.unl.domain;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +18,8 @@ public class Equipo implements Serializable {
     private Long id;
     private String nombre; // Example: "Barcelona SC", "Emelec"
     private String ciudad;
+    @ManyToMany(mappedBy = "equipos")
+    private List<Torneo> torneos;
 
     public Equipo() {
     }
@@ -67,5 +70,13 @@ public class Equipo implements Serializable {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    public List<Torneo> getTorneos() {
+        return torneos;
+    }
+
+    public void setTorneos(List<Torneo> torneos) {
+        this.torneos = torneos;
     }
 }

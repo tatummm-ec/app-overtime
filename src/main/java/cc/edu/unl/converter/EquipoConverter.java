@@ -8,39 +8,41 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.Converter;
 import jakarta.faces.convert.FacesConverter;
 import jakarta.inject.Inject; // Para inyectar el EquipoService
+import org.primefaces.component.picklist.PickList;
+import org.primefaces.model.DualListModel;
 
 
-@FacesConverter(value = "equipoConverter") // Define el nombre del conversor
-public class EquipoConverter implements Converter<Equipo> {
+@FacesConverter(value = "equipoConverter")
+public class EquipoConverter implements Converter {
 
-    @Inject // Inyecta el EquipoService para buscar el equipo por ID
-    private EquipoService equipoService;
-
-    // Convierte un objeto Equipo a su representación String (el ID)
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Equipo equipo) {
-        if (equipo == null) {
-            return "";
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        System.out.println("Converter " + (component instanceof PickList ));
+        if (component instanceof PickList) {
+            System.out.println("PCKLIST");
+            Object dualList = ((PickList) component).getValue();
+            DualListModel<Equipo> dl = (DualListModel<Equipo>) dualList;
+            System.out.println("source " +dl.getSource());
+            for (Equipo equipo : dl.getSource()) {
+                if (equipo.getId().toString().equals(value)) {
+                    return equipo;
+                }
+            }
+            System.out.println("Target "+dl.getTarget());
+            for (Equipo equipo : dl.getTarget()) {
+                if (equipo.getId().toString().equals(value)) {
+                    return equipo;
+                }
+            }
         }
-        // Devuelve el ID del equipo como String
-        return equipo.getId() != null ? equipo.getId().toString() : "";
+        return null;
     }
 
-    // Convierte un String (el ID) de vuelta a un objeto Equipo
     @Override
-    public Equipo getAsObject(FacesContext context, UIComponent component, String value) {
-        if (value == null || value.isEmpty()) {
-            return null;
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+        if (value instanceof Equipo) {
+            return ((Equipo) value).getId().toString();
         }
-        try {
-            Long id = Long.valueOf(value);
-            // Busca el equipo completo usando el servicio
-            return equipoService.obtenerEquipoPorId(id);
-        } catch (NumberFormatException e) {
-            // Maneja el error si el valor no es un número válido
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de conversión", "ID de equipo inválido."));
-            return null;
-        }
+        return "";
     }
 }

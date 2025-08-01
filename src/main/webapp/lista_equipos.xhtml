@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Lista de Torneos</title>
-    <meta charset="UTF-8"/>
+    <title>Lista de Equipos</title>
+    <meta charset="UTF-8" />
     <style>
         body {
             background-image: url('images/fondo_estadio.jpg');
@@ -90,57 +91,40 @@
 <h:body>
     <h:form>
         <div class="contenedor">
-            <h1 class="titulo">LISTA DE TORNEOS</h1>
+            <h1 class="titulo">LISTA DE EQUIPOS</h1>
             <div class="separador"></div>
-
-            <div class="botones-posiciones">
-                <p:commandButton value="Ver Tabla de Posiciones"
-                                 action="tabla_posiciones?faces-redirect=true"/>
-                <p:commandButton value="Administrar Partidos"
-                                 action="registrar_partidos?faces-redirect=true"
-                                 icon="pi pi-star"
-                                 styleClass="ui-button-warning"/>
-            </div>
 
             <p:dataTable rows="5" paginator="true"
                          styleClass="tabla-estilizada"
                          responsiveLayout="scroll"
-                         value="#{listaTorneosBean.torneos}"
-                         var="torneo">
+                         value="#{listaEquiposBean.equipos}"
+                         var="equipo">
 
-                <p:column headerText="Nombre del Torneo">
-                    #{torneo.nombre}
+                <p:column headerText="Nombre del Equipo">
+                    #{equipo.nombre}
                 </p:column>
 
-                <p:column headerText="Periodo">
-                    Fecha inicio: #{torneo.fechaInicio} <br/>
-                    Fecha fin: #{torneo.fechaFin}
+                <p:column headerText="Ciudad">
+                    #{equipo.ciudad}
                 </p:column>
 
                 <p:column headerText="Acción">
                     <div class="acciones">
                         <p:commandButton value="Editar"
-                                         action="#{torneoBean.editar}"
+                                         action="#{equipoBean.editar}"
                                          icon="pi pi-pencil"
                                          process="@this"
                                          ajax="false ">
-                            <f:setPropertyActionListener value="S" target="#{torneoBean.editarAction}"/>
-                            <f:setPropertyActionListener value="#{torneo}" target="#{torneoBean.torneo}"/>
+                            <f:setPropertyActionListener value="S" target="#{equipoBean.editarAction}"/>
+                            <f:setPropertyActionListener value="#{equipo}" target="#{equipoBean.equipo}"/>
+
+                            <p:commandButton value="Home"
+                                             action="#{torneoBean.regitrarEquipo}"
+                                             icon="pi pi-home"
+                                             style="background-color: #0066cc; color: white; font-weight: bold; border-radius: 8px;" />
 
                         </p:commandButton>
-                        <p:commandButton value="Inscribir equipos"
-                                         action="#{torneoBean.regitrarEquipo}"
-                                         icon="pi pi-users">
-                            <f:setPropertyActionListener value="#{torneo}" target="#{torneoBean.torneo}"/>
-
-                        <p:commandButton value="Home"
-                                         action="#{torneoBean.regitrarEquipo}"
-                                         icon="pi pi-home"
-                                         style="background-color: #0066cc; color: white; font-weight: bold; border-radius: 8px;" />
-
-                    </p:commandButton>
-
-        </div>
+                    </div>
                 </p:column>
 
             </p:dataTable>

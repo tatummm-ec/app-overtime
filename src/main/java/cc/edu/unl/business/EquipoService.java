@@ -3,12 +3,14 @@ package cc.edu.unl.business;
 import cc.edu.unl.domain.Equipo;
 import cc.edu.unl.repository.EquipoRepository;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 
 import java.io.Serializable;
 import java.util.List;
 @Stateless
 public class EquipoService implements Serializable {
 
+    @Inject
     private  EquipoRepository equipoRepo;
 
     public EquipoService() {
@@ -19,21 +21,7 @@ public class EquipoService implements Serializable {
         this.equipoRepo = equipoRepo;
     }
 
-    /**
-     * Crea un nuevo equipo validando los datos de entrada.
-     *
-     * @param nombre nombre del equipo
-     * @param ciudad ciudad de origen
-     * @return equipo creado
-     * @throws IllegalArgumentException si los datos son inválidos
-     */
-    public Equipo crearEquipo(String nombre, String ciudad) {
-        validarDatosEquipo(nombre, ciudad);
-
-        Equipo equipo = new Equipo();
-        equipo.setNombre(nombre);
-        equipo.setCiudad(ciudad);
-
+    public Equipo crearEquipo(Equipo equipo) {
         return equipoRepo.create(equipo);
     }
 
@@ -41,12 +29,8 @@ public class EquipoService implements Serializable {
         return equipoRepo.findAll();
     }
 
-    public Equipo obtenerEquipoPorId(Long id) {
-        Equipo equipo = equipoRepo.find(id);
-        if (equipo == null) {
-            throw new IllegalArgumentException("Equipo no encontrado con ID: " + id);
-        }
-        return equipo;
+    public void editarEquipo(Equipo equipo) {
+        equipoRepo.update(equipo);
     }
 
     private void validarDatosEquipo(String nombre, String ciudad) {

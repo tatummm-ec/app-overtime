@@ -2,186 +2,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<h:head>
-   <title>Inscribir Equipos - OverTime</title>
-   <style>
-      body {
-         font-family: 'Segoe UI', sans-serif;
-         background-color: #f4f6f9;
-         margin: 0;
-         padding: 2rem;
-      }
+<ui:composition template="/WEB-INF/templates/base.xhtml">
 
-      .contenedor {
-         position: relative;
-         width: 100%;
-         max-width: 800px;
-         margin: auto;
-         background-color: #fff;
-         border-radius: 1rem;
-         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-         padding: 2rem;
-         box-sizing: border-box;
-      }
+    <ui:define name="title-view">
+        Inscribir Equipos - OverTime
+    </ui:define>
 
-      .imagen-balon {
-         width: 40px;
-         height: 40px;
-         position: absolute;
-         top: 20px;
-         left: 20px;
-      }
+    <ui:define name="content">
+        <div style="display: flex; justify-content: center; align-items: center; padding: 3rem; background-color: #f5f5f5; min-height: 100vh;">
+            <h:form style="width: 100%; max-width: 900px; background-color: #ffffff; padding: 2rem; border-radius: 1rem; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
 
-      .titulo {
-         text-align: center;
-         font-size: 1.8rem;
-         font-weight: bold;
-         color: #FF6B00;
-         margin-bottom: 2rem;
-      }
+                <h2 style="text-align: center; font-size: 1.8rem; color: #ff6600; margin-bottom: 2rem;">Inscripción de Equipos</h2>
 
-      .fila-superior {
-         display: flex;
-         justify-content: space-between;
-         flex-wrap: wrap;
-         gap: 1rem;
-         margin-bottom: 2rem;
-      }
+                <p:messages skipDetailIfEqualsSummary="true" showDetail="true" closable="true" style="margin-bottom: 1.5rem;">
+                    <p:autoUpdate/>
+                </p:messages>
 
-      .nombre-torneo input,
-      .buscar-container input {
-         width: 100%;
-         padding: 0.75rem;
-         font-size: 1rem;
-         border: 2px solid #ccc;
-         border-radius: 8px;
-         box-sizing: border-box;
-      }
+                <p:panel header="Torneo" style="margin-bottom: 2rem;">
+                    <p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4, ui-grid-col-8">
+                        <p:outputLabel value="Nombre del Torneo:" style="font-weight: bold;"/>
+                        <p:outputLabel value="#{inscripcionEquipoBean.torneo.nombre}" />
+                    </p:panelGrid>
+                </p:panel>
 
-      .btn-agregar {
-         background-color: #FF6B00;
-         color: white;
-         font-weight: bold;
-         border: none;
-         border-radius: 8px;
-         padding: 0.75rem 1rem;
-         cursor: pointer;
-         transition: background-color 0.3s;
-      }
+                <p:panel id="pnlIncripciones" style="margin-bottom: 2rem;">
+                    <p:panel header="Seleccionar Equipos para el torneo" rendered="#{!inscripcionEquipoBean.registerOK}" >
+                        <p:pickList id="pickList" value="#{inscripcionEquipoBean.equipos}"
+                                    converter="equipoConverter"
+                                    var="equipo" itemLabel="#{equipo.nombre}" itemValue="#{equipo}"
+                                    style="margin-bottom: 1rem;"/>
+                        <f:facet name="footer">
+                            <div style="text-align: center;">
+                                <p:commandButton value="Ver seleccionados"
+                                                 action="#{inscripcionEquipoBean.mostrarSeleccionados}"
+                                                 process="@this pnlIncripciones"
+                                                 update="pnlIncripciones"
+                                                 icon="pi pi-search"
+                                                 style="background-color: #ff6600; color: white; font-weight: bold; border-radius: 8px; padding: 0.75rem 1.5rem;"/>
+                            </div>
+                        </f:facet>
+                    </p:panel>
+                </p:panel>
 
-      .btn-agregar:hover {
-         background-color: #e65c00;
-      }
+            </h:form>
+        </div>
+    </ui:define>
 
-      .tabla-equipos {
-         width: 100%;
-         border-collapse: collapse;
-         margin-bottom: 2rem;
-      }
-
-      .tabla-equipos th,
-      .tabla-equipos td {
-         border: 1px solid #ccc;
-         padding: 1rem;
-         text-align: left;
-      }
-
-      .btn-eliminar {
-         background-color: #d32f2f;
-         color: white;
-         font-weight: bold;
-         border: none;
-         border-radius: 4px;
-         width: 32px;
-         height: 32px;
-         cursor: pointer;
-      }
-
-      .acciones {
-         display: flex;
-         justify-content: center;
-         gap: 2rem;
-      }
-
-      .acciones .ui-commandbutton {
-         padding: 0.75rem 2rem;
-         font-weight: bold;
-         border: none;
-         border-radius: 8px;
-      }
-
-      .guardar-btn {
-         background-color: #FF6B00;
-         color: white;
-      }
-
-      .cancelar-btn {
-         background-color: #0066CC;
-         color: white;
-      }
-   </style>
-</h:head>
-
-<h:body>
-   <h:form>
-      <div class="contenedor">
-
-         <img src="#{request.contextPath}/images/balon.jpg" class="imagen-balon" alt="Balón" />
-
-         <div class="titulo">
-            Inscribir Equipos
-         </div>
-
-         <div class="fila-superior">
-            <div class="nombre-torneo" style="flex: 2;">
-               <!--h:inputText placeholder="Nombre del torneo"/-->
-               <p:selectOneMenu value="#{inscripcionEquipoBean.torneoSeleccionado}" style="width:100%">
-                  <f:selectItem itemLabel="Seleccione un torneo" itemValue="#{null}" noSelectionOption="true"/>
-                  <f:selectItems value="#{inscripcionEquipoBean.torneos}" var="torneo"
-                                 itemValue="#{torneo}" itemLabel="#{torneo.nombre}" />
-               </p:selectOneMenu>
-            </div>
-            <div class="buscar-container" style="flex: 2; display: flex; gap: 0.5rem;">
-               <p:inputText value="#{inscripcionEquipoBean.nombreEquipoBusqueda}" placeholder="Nombre del equipo"/>
-               <p:commandButton value="Buscar" icon="pi pi-search"
-                                actionListener="#{inscripcionEquipoBean.buscarEquipos}" update="tabla-equipos"/>
-            </div>
-            <!--div class="buscar-container" style="flex: 2; display: flex; gap: 0.5rem;">
-                <h:inputText placeholder="Nombre del equipo" />
-                <h:commandButton value="+" styleClass="btn-agregar" action="#{inscripcionEquipoBean.agregarEquipo()}"
-                />
-            </div-->
-         </div>
-
-         <table class="tabla-equipos">
-            <thead>
-            <tr>
-               <th>Equipo</th>
-               <th style="width: 60px;">Eliminar</th>
-            </tr>
-            </thead>
-            <tr>
-               <td>Equipo de Ejemplo</td>
-               <td style="text-align: center;">
-                  <h:commandButton value="✘" styleClass="btn-eliminar"
-                                   actionListener="#{inscripcionEquipoBean.eliminarEquipo(equipo)}"
-                                   update="inscribir_equipos"/>
-               </td>
-            </tr>
-         </table>
-
-         <div class="acciones">
-            <p:commandButton value="Guardar" styleClass="guardar-btn" actionListener="#{inscripcionEquipoBean.guardarInscripciones}"
-                             update="@form"/>
-            <p:commandButton value="Cancelar"
-                             action="lista_torneos?faces-redirect=true"
-                             styleClass="cancelar-btn"
-                             immediate="true" />
-         </div>
-
-      </div>
-   </h:form>
-</h:body>
+</ui:composition>
 </html>

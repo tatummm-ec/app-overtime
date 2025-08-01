@@ -3,24 +3,27 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-   <title>Registrar Partido</title>
+   <title>Vista de Partido (Modo bloqueado)</title>
    <meta charset="UTF-8" />
    <style>
-      body {
-         background: url('images/fondo_estadio.jpg') no-repeat center center fixed;
-         background-size: cover;
-         font-family: Arial, sans-serif;
+      html, body {
+         height: 100%;
          margin: 0;
          padding: 0;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         background-color: #e0f7e9; /* verde claro */
+         font-family: Arial, sans-serif;
       }
 
       .form-container {
          width: 600px;
-         margin: 40px auto;
-         background-color: rgba(255, 255, 255, 0.95);
+         background-color: rgba(255, 255, 255, 0.97);
          padding: 30px;
          border-radius: 12px;
-         box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+         box-shadow: 0 0 15px rgba(0, 100, 0, 0.4);
+         position: relative;
       }
 
       .form-row {
@@ -30,11 +33,11 @@
          margin-bottom: 20px;
       }
 
-      .form-row label, .form-row .label {
+      .form-row label {
          width: 45%;
          text-align: right;
          font-weight: bold;
-         background-color: #ff914d;
+         background-color: #66bb6a; /* verde intenso */
          color: white;
          padding: 10px;
          border-radius: 5px;
@@ -43,9 +46,17 @@
       .input {
          width: 50%;
          padding: 10px;
-         border: 1px solid #ccc;
+         background-color: #d0e9d4;
+         border: 1px solid #9ccc65;
          border-radius: 5px;
          text-align: center;
+         color: #666;
+      }
+
+      input[disabled], input[readonly] {
+         cursor: not-allowed;
+         background-color: #d0e9d4;
+         color: #888;
       }
 
       .vs-row {
@@ -64,31 +75,18 @@
       }
 
       .vs {
-         color: red;
+         color: #2e7d32;
          font-size: 20px;
          font-weight: bold;
       }
 
-      .button-row {
-         display: flex;
-         justify-content: center;
-         gap: 40px;
-         margin-top: 30px;
-      }
-
-      .btn {
-         padding: 10px 30px;
-         font-size: 16px;
-         background-color: #3f3f3f;
-         color: white;
-         border: none;
-         border-radius: 6px;
-         cursor: pointer;
-         transition: background-color 0.3s ease;
-      }
-
-      .btn:hover {
-         background-color: #5a5a5a;
+      .locked-message {
+         position: absolute;
+         bottom: 10px;
+         right: 15px;
+         font-size: 12px;
+         color: #2e7d32;
+         font-style: italic;
       }
    </style>
 </h:head>
@@ -97,50 +95,45 @@
       <div class="form-container">
 
          <div class="form-row">
-            <label for="torneo" class="label">Partido del Torneo:</label>
-            <h:inputText id="torneo" value="#{partidoBean.torneo}" styleClass="input" />
+            <label>Partido del Torneo:</label>
+            <h:inputText styleClass="input" disabled="true" value="" />
          </div>
 
          <div class="form-row">
-            <label for="local" class="label">Equipo Local:</label>
-            <h:inputText id="local" value="#{partidoBean.equipoLocal}" styleClass="input" />
+            <label>Equipo Local:</label>
+            <h:inputText styleClass="input" disabled="true" value="" />
          </div>
 
          <div class="form-row">
-            <label for="visitante" class="label">Equipo Visitante:</label>
-            <h:inputText id="visitante" value="#{partidoBean.equipoVisitante}" styleClass="input" />
+            <label>Equipo Visitante:</label>
+            <h:inputText styleClass="input" disabled="true" value="" />
          </div>
 
          <div class="vs-row">
-            <span>#{partidoBean.equipoLocal}</span>
+            <span>Equipo A</span>
             <span class="vs">VS</span>
-            <span>#{partidoBean.equipoVisitante}</span>
+            <span>Equipo B</span>
          </div>
 
          <div class="form-row">
-            <label for="fecha" class="label">Fecha:</label>
-            <h:inputText id="fecha" value="#{partidoBean.fecha}" styleClass="input" />
+            <label>Fecha:</label>
+            <h:inputText styleClass="input" disabled="true" value="" />
          </div>
 
          <div class="form-row">
-            <label for="resultadoLocal" class="label">Resultado Local:</label>
-            <h:inputText id="resultadoLocal" value="#{partidoBean.resultadoLocal}" styleClass="input" />
+            <label>Resultado Local:</label>
+            <h:inputText styleClass="input" disabled="true" value="" />
          </div>
 
          <div class="form-row">
             <div class="label" style="width: 100%; text-align: center;">
                (VEREDICTO)<br/>
-               #{partidoBean.veredicto} <!-- Aquí mostrarías el Enum -->
+               -
             </div>
          </div>
 
-         <div class="button-row">
-            <h:commandButton value="GUARDAR"
-                             action="#{partidoBean.guardarPartido}"
-                             styleClass="btn" />
-            <h:commandButton value="CANCELAR"
-                             action="lista_torneos?faces-redirect=true"
-                             styleClass="btn" immediate="true"/>
+         <div class="locked-message">
+            Si quieres desbloquear esta función paga $3.99 al mes
          </div>
 
       </div>

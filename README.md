@@ -61,30 +61,21 @@ Clases y relaciones entre clases (herencia, asociacion, composicion)
 +---------------------+                  Inscripcion   n ------------- 1  +---------------------+
 |     Torneo          |  n                                                |     Equipo          |
 +---------------------+  --------------XXXXX----------------------------  +---------------------+
-| nombre: String      |  n                                            n   | nombre:             |
-| inicio:             |                            +--------------------  | ciudad:             |
-| fin:                |                            |                  2   +---------------------+
-+---------------------+                            |                      
-                                                   |
-                                                   |
-                                                   |
-                                                   | 1
-                                       +-------------------------+                    +---------------------+
-                                       |      Partido            | 1               1  |     Resultado       | 
-                                       +-------------------------+ -----------------  +---------------------+
-                                       | fecha:                  |                    | veredicto:          |
-                                       | hora:                   |                    | marcador:           |
-                                       +-------------------------+                    | golesLocal:        |
-                                                    | n                               | golesVisitante     |
-                                                    |                                 +---------------------+
-                                                    |
-                                                    | 1
-                                        +-------------------------+
-                                        |      Fecha              |
-                                        +-------------------------+
-                                        | inicio:                 |
-                                        | fin  :                  |
-                                        +-------------------------+
+| nombre: String      |  n                                                | nombre:             |
+| inicio:             |                                                   | ciudad:             |
+| fin:                |                                                   +---------------------+
++---------------------+                                               
+        |1
+        |
+        | 
+        |1
++-------------------------+
+|      Fecha              |
++-------------------------+
+| inicio:                 |
+| fin  :                  |
++-------------------------+                                            |
+                                        
 
 
 MODELO ENTIDAD - RELACION
@@ -111,18 +102,6 @@ fechaRegistro:
 equipo_id: long
 torneo_id: long
 
-Partido
--------
-id: 
-fecha:
-hora:
-equipoLocal_id:
-equipoVisitante_id:
-veredicto: 
-marcador:
-golesLocal:
-golesVisitante:
-fecha_id
 
 Fecha
 -----
@@ -134,7 +113,7 @@ fin:
 Usuario
 -------
 nombre: varchar(100)
-contrasena: varcahr(100)
+contrasena: varchar(100)
 
 
 CASOS DE USO
@@ -145,14 +124,6 @@ CASOS DE USO
  Administrador   + ----------- Crear equipo
                  |
                  + ----------- Inscribir equipo en torneo
-                 |
-                 + ----------- Crear fecha del torneo 
-                 |
-                 + ----------- Agregar partidos a una fecha 
-                 |
-                 + ----------- Registrar resultados
-                 |
-                 + ----------- Mostrar tabla de posiciones
  
 
 Caso de Uso: Crear Torneo
@@ -183,31 +154,8 @@ Caso de uso: Inscribir equipo en torneo
 4. El administrador selecciona el equipo a inscribir, el sistema agrega el equipo seleccionado a la lista de equipos del torneo
 5. EL administrador presiona el boton Guardar y el sistema guarda las inscripciones de los equipos en el torneo seleccionado
 
-Caso de uso : Crear fecha del torneo
-Curso Basico
-1. El administrador del sistema escoje la opcion Crear fecha del torneo [Lista de torneos]
-2. El administrador escoge la opcion [Crear fecha] y el sistema presenta la pantalla [Editar torneo]
-3. El administrador crea la fecha del torneo [Guardar]
-4. El sistema guarda la fecha del torneo, notifica que la creacion fue correcta y el caso de uso finaliza.
 
-Caso de uso: Agregar partidos a una fecha
-1. El administrador del sistema escoje la opcion Administrar torneos y se presenta la pantalla [Lista de torneos]
-2. El administrador escoge la opcion [Agregar Parido],  el sistema recupera el torneo seleccionado y  presenta la pantalla [Administrar Partido ]
-3. Para cada equipo a jugar, el administrador digita el nombre del equipo a inscribir en la seccion de busqueda de equipos (equipo Local y equipo Visitante), el sistema busca los equipos que coincidan con el nombre ingresado,
-4. El administrador selecciona los equipos, el sistema agrega la fecha para registrar el partido.
-5. EL administrador presiona el boton Guardar y el sistema guarda la fecha del partido.
 
-Caso de uso: Registrar resultados
-1. El administrador del sistema escoje la opcion Administrar torneos y se presenta la pantalla [Lista de torneos]
-2. El administrador escoge la opcion [Registrar resultados], el sistema recupera el partido y permite el registro
-3. . El administrador selecciona los equipos, el sistema agrega la fecha para registrar el partido.
-4. El administrador coloca el resultado a partir de los ENUM.
-5. EL administrador presiona el boton Guardar y el sistema guarda el resultado.
-
-Caso de uso: Mostrar tabla de posiciones
-1. El administrador del sistema escoje la opcion Administrar torneos y se presenta la pantalla [Lista de torneos]
-2. El administrador escoge la opcion [Ver Estadisticas], el sistema hace consultas del torneo
-3. Se observa todos los datos, impresos en una tabla
 
 
 DISENO

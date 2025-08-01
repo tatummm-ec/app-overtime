@@ -5,7 +5,7 @@ DB_NAME=overtime
 DB_USER=overtimeuser
 DB_PASSWORD=overtimeUser2525
 DB_MYSQL_PORT_PUBLIC=3306
-LOCAL_MYSQL_DATA_DIR_BD=./mysql-data
+LOCAL_MYSQL_DATA_DIR_BD=C:\SandboxPOO\docker-mysql\overtime
 
 DB_SERVER_NAME=overtime-mysql-db
 DB_PORT_NUMBER=3306

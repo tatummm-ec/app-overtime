@@ -2,9 +2,13 @@ package cc.edu.unl.controller;
 
 import cc.edu.unl.business.EquipoService;
 import cc.edu.unl.domain.Equipo;
+import cc.edu.unl.domain.Torneo;
 import cc.edu.unl.faces.FacesUtil;
 import jakarta.annotation.PostConstruct;
 //import jakarta.enterprise.context.ViewScoped;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.Flash;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -12,61 +16,50 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-@Named("equipoBean")
+@Named
 @ViewScoped
 public class EquipoBean implements Serializable {
 
     private Equipo equipo;
-    private List<Equipo> equipos;
+    private String editarAction;
 
-    private Long idEquipoSeleccionado;
 
     @Inject
     private EquipoService equipoService;
 
     @PostConstruct
     public void init() {
-        equipo = new Equipo();
-        cargarEquipos();
-    }
+        equipo = (Equipo) FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getFlash()
+                .get("equipo");
 
-    public void cargarEquipos() {
-        equipos = equipoService.listarEquipos();
-    }
-
-    public void cargarEquipoPorId() {
-        if (idEquipoSeleccionado != null) {
-            try {
-                equipo = equipoService.obtenerEquipoPorId(idEquipoSeleccionado);
-            } catch (IllegalArgumentException e) {
-                FacesUtil.addErrorMessage("No se pudo cargar el equipo: " + e.getMessage());
-            }
+        if (equipo == null) {
+            equipo = new Equipo();
         }
     }
 
-    public String guardar() {
-        try {
-            if (equipo.getId() == null) {
-                equipoService.crearEquipo(equipo.getNombre(), equipo.getCiudad());
-                FacesUtil.addSuccessMessageAndKeep("Equipo creado exitosamente.");
-            } else {
-                equipoService.obtenerEquipoPorId(equipo.getId()); // Valida existencia
-                equipoService.listarEquipos().stream()
-                        .filter(e -> e.getId().equals(equipo.getId()))
-                        .findFirst()
-                        .ifPresent(e -> {
-                            e.setNombre(equipo.getNombre());
-                            e.setCiudad(equipo.getCiudad());
-                            equipoService.crearEquipo(e.getNombre(), e.getCiudad());
-                        });
-                FacesUtil.addSuccessMessageAndKeep("Equipo editado exitosamente.");
-            }
-            return "lista-equipos?faces-redirect=true";
-        } catch (IllegalArgumentException e) {
-            FacesUtil.addErrorMessage(e.getMessage());
-            return null;
-        }
+    public String crearEquipo() {
+        equipoService.crearEquipo(equipo);
+        return "lista_equipos.xhtml?faces-redirect=true";
     }
+
+    public String editar(){
+        System.out.println(equipo);
+
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        Flash flash = externalContext.getFlash();
+        flash.put("equipo", equipo);
+        flash.put("editar", editarAction);
+
+        return "administrar_equipos.xhtml?faces-redirect=true";
+    }
+
+    public String editarEquipo(){
+        equipoService.editarEquipo(equipo);
+        return "lista_equipos?faces-redirect=true";
+    }
+
 
     public Equipo getEquipo() {
         return equipo;
@@ -76,15 +69,11 @@ public class EquipoBean implements Serializable {
         this.equipo = equipo;
     }
 
-    public List<Equipo> getEquipos() {
-        return equipos;
+    public String getEditarAction() {
+        return editarAction;
     }
 
-    public Long getIdEquipoSeleccionado() {
-        return idEquipoSeleccionado;
-    }
-
-    public void setIdEquipoSeleccionado(Long idEquipoSeleccionado) {
-        this.idEquipoSeleccionado = idEquipoSeleccionado;
+    public void setEditarAction(String editarAction) {
+        this.editarAction = editarAction;
     }
 }

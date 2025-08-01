@@ -23,8 +23,7 @@ public class Torneo implements Serializable {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "torneo_id")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Equipo> equipos = new ArrayList<>();
 
     public Torneo() {

@@ -2,6 +2,7 @@ package cc.edu.unl.controller;
 
 import cc.edu.unl.business.UsuarioService;
 import cc.edu.unl.domain.User;
+import cc.edu.unl.faces.FacesUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.annotation.View;
@@ -27,12 +28,13 @@ public class RegisterBean implements Serializable {
         user = new User();
     }
 
-    public String crearUsuario(){
-        if
-        usuarioService.crearUsuario(user);
-        return "home.xhtml?faces-redirect=true";
-        else{
-
+    public String crearUsuario() {
+        if (user.getPassword().equals(passwordValidate)) {
+            usuarioService.crearUsuario(user);
+            return "login.xhtml?faces-redirect=true";
+        } else {
+            FacesUtil.addErrorMessage("Las contraseñas no coinciden");
+            return null;
         }
     }
 
